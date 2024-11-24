@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/chaijs/chai" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/danielm/uploader" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/dennyferra/typewatch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/fezvrasta/popper.js" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/fr33z00/panzoom" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/joequery/stupid-table-plugin" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/jquery/jquery" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/jquery/jquery-mousewheel" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/lrsjng/kjua" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/mattbryson/touchswipe-jquery-plugin" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/mochajs/mocha" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/public_html/thirdparty/swisnl/jquery-contextmenu" vcs="Git" />
+  </component>
+</project>

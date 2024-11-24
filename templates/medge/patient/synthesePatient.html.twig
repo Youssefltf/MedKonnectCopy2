@@ -1,0 +1,74 @@
+{#
+ # This file is part of MedShakeEHR.
+ #
+ # Copyright (c) 2018
+ # Bertrand Boutillier <b.boutillier@gmail.com>
+ # http://www.medshake.net
+ #
+ # MedShakeEHR is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+ # the Free Software Foundation, either version 3 of the License, or
+ # any later version.
+ #
+ # MedShakeEHR is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ # GNU General Public License for more details.
+ #
+ # You should have received a copy of the GNU General Public License
+ # along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ #/
+
+/##
+ # Template > patient : tableau de gestion synthèse medge
+ #
+ # @author Bertrand Boutillier <b.boutillier@gmail.com>
+ #}
+
+{% import "macroForm.html.twig" as f %}
+<div class="row changeObserv" id="synthesePatiente" style="">
+
+    <div class="jumbotron col-md-12">
+        {{ f.formbuilder(page.formSynthese , 'medGeSynthesePatient' ) }}
+
+        {# consultation #}
+        {% if page.patient.administrativeDatas.birthdate.ageFormats.ageTotalYears >= 18 %}
+          {% for v in page.medGeCatConsultBaseAdulte %}
+              <button type="button" class="btn btn-success btn-sm addNewCS mb-1" data-parentID='0' data-instanceMere="0" data-formtocall="{{ v.formValues }}" data-csID="{{ v.id }}" data-mode="create">{{ v.label|e }}</button>
+          {% endfor %}
+        {% else %}
+          {% for v in page.medGeCatConsultBasePedia %}
+              <button type="button" class="btn btn-success btn-sm addNewCS mb-1" data-parentID='0' data-instanceMere="0" data-formtocall="{{ v.formValues }}" data-csID="{{ v.id }}" data-mode="create">{{ v.label|e }}</button>
+          {% endfor %}
+        {% endif %}
+
+        {% for v in page.medGeCatConsultDiverses %}
+            <button type="button" class="btn btn-success btn-sm addNewCS mb-1" data-parentID='0' data-instanceMere="0" data-formtocall="{{ v.formValues }}" data-csID="{{ v.id }}" data-mode="create">{{ v.label|e }}</button>
+        {% endfor %}
+
+        {# examens pédiatriques #}
+        {% if page.patient.administrativeDatas.birthdate.ageFormats.ageTotalYears < 18 %}
+        <div class="btn-group">
+          <button class="btn btn-success btn-sm dropdown-toggle mb-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Examens pédiatriques spécifiques
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for v in page.medGeCatConsultPedia %}
+                <a href="#" class="dropdown-item addNewCS" data-parentID='0' data-instanceMere="0" data-formtocall="{{ v.formValues }}" data-csID="{{ v.id }}" data-mode="create">{{ v.label|e }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if page.grossesseEnCours.id == '' and page.patient.administrativeDatas.birthdate.ageFormats.ageTotalYears < 60 and page.patient.administrativeDatas.birthdate.ageFormats.ageTotalYears > 14 and page.patient.administrativeDatas.administrativeGenderCode.value == 'F' %}
+            <a href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/module/actions/installNewGro/{{ page.patient.id }}/" role="button" class="btn btn-info btn-sm float-right m-1 newGro">Nouvelle grossesse</a>
+        {% endif %}
+
+        {% if page.formJavascript.medGeSynthesePatient is not empty %}
+          <script>
+            {{ page.formJavascript.medGeSynthesePatient }}
+          </script>
+        {% endif %}
+    </div>
+
+</div>
