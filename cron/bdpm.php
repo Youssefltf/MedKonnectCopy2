@@ -69,7 +69,11 @@ $bdpm = msYAML::yamlFileRead($homepath . 'config/bdpm/configBdpm.yml');
 $destiRessource = $homepath . 'ressources/bdpm/';
 msTools::checkAndBuildTargetDir($destiRessource, 0755);
 
-foreach ($bdpm['dataBdpm'] as $table => $v) {
+/**
+ * Début - désactivation de cron bdpm
+ */
+
+/*foreach ($bdpm['dataBdpm'] as $table => $v) {
 	$file = '/tmp/' . $v['file'];
 	@unlink($file);
 	exec("wget " . escapeshellarg($v['url']) . " -O " . escapeshellarg($file));
@@ -85,4 +89,9 @@ foreach ($bdpm['dataBdpm'] as $table => $v) {
 		copy($file, $copyDest);
 		msSQL::sqlInsert('bdpm_updates', ['fileName' => $v['file'], 'fileLastParse' => date("Y-m-d H:i:s")]);
 	}
-}
+}*/
+
+/**
+ * Fin - désactivation de cron bdpm
+ */
+
