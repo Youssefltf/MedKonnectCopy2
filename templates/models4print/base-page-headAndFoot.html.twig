@@ -25,6 +25,7 @@
  # @author Bertrand Boutillier <b.boutillier@gmail.com>
  #}
 
+{% set tag = page.courrier %}
 
     <html>
         <head>
@@ -87,12 +88,12 @@
 
               <div id="header">
                   <div class="t8" style="display : inline-block; width : 65%;vertical-align : bottom;">
-                      <span class="gras" style="font-size : 16pt;">Docteur Moussi Med</span><br>
+                      <span class="gras" style="font-size : 16pt;">Docteur {{ tag.AuteurInitial_identiteUsuelle }}</span><br>
                       Médecin généraliste - Conventionnée secteur 2<br><br>
 
                       N°ADELI : <br>
                       RPPS : <br>
-                      dr.med@gmail.com
+                      {{ tag.AuteurInitial_personalEmail }}
                   </div>
 
                   {#<div class="t8" style=" display : inline-block; width : 35%; vertical-align : bottom; text-align : right;padding-top : 88pt;">177 A, Bleecker Street<br>
