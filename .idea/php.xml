@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/vendor/openspout/openspout" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/webit/eval-math" />
+      <path value="$PROJECT_DIR$/vendor/altorouter/altorouter" />
+      <path value="$PROJECT_DIR$/vendor/ovh/ovh" />
+      <path value="$PROJECT_DIR$/vendor/beberlei/assert" />
+      <path value="$PROJECT_DIR$/vendor/spomky-labs/otphp" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/wixel/gump" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/thecodingmachine/safe" />
+      <path value="$PROJECT_DIR$/vendor/picqer/php-barcode-generator" />
+      <path value="$PROJECT_DIR$/vendor/setasign/fpdf" />
+      <path value="$PROJECT_DIR$/vendor/setasign/fpdi" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/chaijs/chai" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/danielm/uploader" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/components/jquery" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/joequery/stupid-table-plugin" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/mattbryson/touchswipe-jquery-plugin" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/fr33z00/panzoom" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/dimsemenov/magnific-popup" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/mochajs/mocha" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/fezvrasta/popper.js" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/fullcalendar/fullcalendar" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/moment/moment" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/kriswallsmith/assetic" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/eonasdan/bootstrap-datetimepicker" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/symfony/process" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/robloach/component-installer" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/tinymce/tinymce" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/composer" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/lrsjng/kjua" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/swisnl/jquery-contextmenu" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/dennyferra/typewatch" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/twbs/bootstrap" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/oomphinc/composer-installers-extender" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/jquery/jquery-mousewheel" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/jquery/jquery" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/fortawesome/font-awesome" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/thebingservices/codemirror" />
+      <path value="$PROJECT_DIR$/public_html/thirdparty/brinley/jsignature" />
+    </include_path>
+  </component>
+</project>
