@@ -971,7 +971,7 @@ INSERT IGNORE INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `t
 ('administratifSecteurHonorairesCcam', 'default', 0, '', 'Règlements', '', 'grille tarifaire CCAM du praticien', '0'),
 ('administratifSecteurHonorairesNgap', 'default', 0, '', 'Règlements', 'texte', 'Code profession pour le secteur tarifaire NGAP', 'mspe'),
 ('administratifSecteurIK', 'default', 0, '', 'Règlements', 'texte', 'tarification des IK : indiquer plaine ou montagne', 'plaine'),
-('agendaDistantLink', 'default', 0, '', 'Agenda', 'url', 'lien à appliquer à Agenda sur les pages MedShakeEHR. Si agendaService est configuré, alors agendaDistantLink doit être vide', ''),
+('agendaDistantLink', 'default', 0, '', 'Agenda', 'url', 'lien à appliquer à Agenda sur les pages MedKonnectEHR. Si agendaService est configuré, alors agendaDistantLink doit être vide', ''),
 ('agendaDistantPatientsOfTheDay', 'default', 0, '', 'Agenda', 'url', 'url distante où l’on peut récupérer une liste horodatée des patients du jour', ''),
 ('agendaEnvoyerChiffreParMail', 'default', 0, '', 'Agenda', 'true/false', 'activer le service d\'envoi par mail de l\'agenda futur chiffré GPG', ''),
 ('agendaEnvoyerChiffreTo', 'default', 0, '', 'Agenda', 'texte', 'adresse email à laquelle envoyer l\'agenda chiffré GPG - séparer par virgule si plusieurs ', ''),
@@ -986,8 +986,8 @@ INSERT IGNORE INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `t
 ('agendaService', 'default', 0, '', 'Agenda', 'vide/clicRDV', 'si non vide, active le service tiers concerné', ''),
 ('allMySmsApiKey', 'default', 0, '', 'Rappels SMS', 'texte', 'API key allMySMS', ''),
 ('allMySmsLogin', 'default', 0, '', 'Rappels SMS', 'texte', 'login allMySMS', ''),
-('apiCcamNgapKey', 'default', 0, '', 'Règlements', 'string', 'Clef de l\'API CCAM NGAP MedShake', ''),
-('apiCcamNgapUrl', 'default', 0, '', 'Règlements', 'url', 'URL de l\'API CCAM NGAP MedShake', ''),
+('apiCcamNgapKey', 'default', 0, '', 'Règlements', 'string', 'Clef de l\'API CCAM NGAP MedKonnect', ''),
+('apiCcamNgapUrl', 'default', 0, '', 'Règlements', 'url', 'URL de l\'API CCAM NGAP MedKonnect', ''),
 ('apicrypt2CertName', 'default', 0, '', 'Apicrypt', 'texte', 'nom du certificat à utiliser', ''),
 ('apicrypt2CertPassword', 'default', 0, '', 'Apicrypt', 'texte', 'mot de passe du certificat', ''),
 ('apicryptAdresse', 'default', 0, '', 'Apicrypt', 'texte', 'adresse complète apicrypt, ex :  prenom.NOM@medicalXX.apicrypt.org', ''),
@@ -1014,7 +1014,7 @@ INSERT IGNORE INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `t
 ('clicRdvPassword', 'default', 0, '', 'clicRDV', 'texte', '', ''),
 ('clicRdvUserId', 'default', 0, '', 'clicRDV', 'texte', '', ''),
 ('click2callService', 'default', 0, '', 'Click2call', 'string', 'nom du service Click2call à activer (OVH)', ''),
-('designAppName', 'default', 0, '', 'Ergonomie et design', 'texte', 'nom de l\'application', 'MedShakeEHR'),
+('designAppName', 'default', 0, '', 'Ergonomie et design', 'texte', 'nom de l\'application', 'MedKonnectEHR'),
 ('designInboxMailsSortOrder', 'default', 0, '', 'Ergonomie et design', 'texte', 'sens du tri des mails en colonne latérale : date ascendante (asc) ou descendante (desc) ', 'desc'),
 ('designTopMenuDropboxCountDisplay', 'default', 0, '', 'Ergonomie et design', 'true/false', 'afficher dans le menu de navigation du haut de page le nombre de fichier dans la boite de dépôt', 'true'),
 ('designTopMenuInboxCountDisplay', 'default', 0, '', 'Ergonomie et design', 'true/false', 'afficher dans le menu de navigation du haut de page le nombre de nouveaux messages dans la boite de réception', 'true'),
@@ -1025,12 +1025,12 @@ INSERT IGNORE INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `t
 ('designTopMenuTransmissionsColorIconeUrgent', 'default', 0, '', 'Ergonomie et design', 'true/false', 'colore l\'icône transmission si transmission urgente non lue', 'true'),
 ('designTopMenuTransmissionsCountDisplay', 'default', 0, '', 'Ergonomie et design', 'true/false', 'afficher dans le menu de navigation du haut de page le nombre de transmissions non lues', 'true'),
 ('dicomAutoSendPatient', 'default', 0, '', 'DICOM', 'true/false', 'générer automatiquement le fichier worklist pour Orthanc à l\'ouverture d’un dossier patient. Ne pas mettre à true pour une secrétaire par exemple !', 'false'),
-('dicomDiscoverNewTags', 'default', 0, '', 'DICOM', 'true/false', 'enregistrer automatiquement dans la base de données les nouveaux tags dicom rencontrés lors de la visualisation d\'études afin de pouvoir les associer par la suite automatiquement avec des données de formulaire MedShakeEHR', 'true'),
+('dicomDiscoverNewTags', 'default', 0, '', 'DICOM', 'true/false', 'enregistrer automatiquement dans la base de données les nouveaux tags dicom rencontrés lors de la visualisation d\'études afin de pouvoir les associer par la suite automatiquement avec des données de formulaire MedKonnectEHR', 'true'),
 ('dicomHost', 'default', 0, '', 'DICOM', 'url/ip', 'IP du serveur Orthanc', ''),
 ('dicomPort', 'default', 0, '', 'DICOM', 'nombre', 'port de l\'API Orthanc (défaut 8042)', '8042'),
-('dicomPrefixIdPatient', 'default', 0, '', 'DICOM', 'texte', 'prefix à appliquer à l\'identifiant numérique MedShakeEHR pour en faire un identifiant DICOM unique', '1.100.100'),
+('dicomPrefixIdPatient', 'default', 0, '', 'DICOM', 'texte', 'prefix à appliquer à l\'identifiant numérique MedKonnectEHR pour en faire un identifiant DICOM unique', '1.100.100'),
 ('dicomProtocol', 'default', 0, '', 'DICOM', 'texte', 'http:// ou https:// ', 'http://'),
-('dicomWorkListDirectory', 'default', 0, '', 'DICOM', 'dossier', 'chemin du répertoire où Orthanc va récupérer le fichier dicom worklist généré par MedShakeEHR pour le passer à l\'appareil d\'imagerie', ''),
+('dicomWorkListDirectory', 'default', 0, '', 'DICOM', 'dossier', 'chemin du répertoire où Orthanc va récupérer le fichier dicom worklist généré par MedKonnectEHR pour le passer à l\'appareil d\'imagerie', ''),
 ('dicomWorkingDirectory', 'default', 0, '', 'DICOM', 'dossier', 'répertoire de travail local où on peut rapatrier des images à partir d\'Orthanc pour les parcourir ou les traiter (pdf, zip ...). Utiliser en général le même répertoire que celui indiqué dans workingDirectory des paramètres généraux. Doit être en zone web accessible', ''),
 ('droitDossierPeutAssignerPropresGroupesPraticienFils', 'default', 0, '', 'Droits', 'true/false', 'si true, peut assigner ses propres appartenances aux groupes à un praticien créé par lui-même', 'false'),
 ('droitDossierPeutCreerPraticien', 'default', 0, '', 'Droits', 'true/false', 'si true, peut créer des dossiers praticiens', 'true'),
@@ -1251,7 +1251,7 @@ INSERT IGNORE INTO `forms` (`module`, `internalName`, `name`, `description`, `da
 -- people
 INSERT IGNORE INTO `people` (`name`, `type`, `rank`, `module`, `pass`, `secret2fa`, `registerDate`, `fromID`, `lastLogIP`, `lastLogDate`, `lastLogFingerprint`, `lastLostPassDate`, `lastLostPassRandStr`) VALUES
 ('clicRDV', 'service', '', 'base', '', NULL, '2019-01-01 00:00:00', 1, '', '2019-01-01 00:00:00', '', NULL, NULL),
-('medshake', 'service', '', 'base', '', NULL, '2019-01-01 00:00:00', 1, '', '2019-01-01 00:00:00', '', NULL, NULL);
+('medkonnect', 'service', '', 'base', '', NULL, '2019-01-01 00:00:00', 1, '', '2019-01-01 00:00:00', '', NULL, NULL);
 
 -- prescriptions_cat
 INSERT IGNORE INTO `prescriptions_cat` (`name`, `label`, `description`, `type`, `fromID`, `toID`, `creationDate`, `displayOrder`) VALUES

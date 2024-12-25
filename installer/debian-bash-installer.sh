@@ -1,21 +1,21 @@
 #! /bin/bash
 
-# This file is part of MedShakeEHR.
+# This file is part of MedKonnectEHR.
 #
 # Copyright (c) 2020
 # Michaël Val 
-# MedShakeEHR is free software: you can redistribute it and/or modify
+# MedKonnectEHR is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
 #
-# MedShakeEHR is distributed in the hope that it will be useful,
+# MedKonnectEHR is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+# along with MedKonnectEHR.  If not, see <http://www.gnu.org/licenses/>.
 
 # Installateur de base
 #
@@ -28,8 +28,8 @@ selectMsehrPath() {
 }
 
 selectPackages() {
-    echo "Installation des dépendances de MedShakeEHR minimales, tapez 1 [défaut]"
-    echo "Installation de MedShakeEHR avec Orthanc (Phonecapture, Echographe ...), tapez 2"
+    echo "Installation des dépendances de MedKonnectEHR minimales, tapez 1 [défaut]"
+    echo "Installation de MedKonnectEHR avec Orthanc (Phonecapture, Echographe ...), tapez 2"
     echo "Ne rien installer, tapez 3"
     read -er -i "$selectInstall" -p "Choix : " input
     selectInstall="${input:-$selectInstall}"
@@ -105,13 +105,13 @@ apacheConfig() {
     ## Configuration vhost http
     echo "<VirtualHost *:80>
         ServerName $msehrDom
-        ServerAlias msehr ehr medshakeehr MedShakeEHR
+        ServerAlias msehr ehr medkonnectehr MedKonnectEHR
         RedirectMatch     permanent ^(.*)$ https://$msehrDom\$1
     </VirtualHost>
 
     <VirtualHost *:443>
         ServerName $msehrDom
-        ServerAlias msehr ehr medshakeehr MedShakeEHR
+        ServerAlias msehr ehr medkonnectehr MedKonnectEHR
         DocumentRoot $msehrPath/public_html
         RewriteEngine On
         SSLEngine On
@@ -157,7 +157,7 @@ mariadbConfig() {
         [ "$mysqlRootPswd" = "$mysqlRootPswd1" ] && break || echo "Mot de passe non correspondant: veuillez reessayez."
     done
     echo
-    read -er -i "$msehrDbName" -p "Choix du nom de la base de donnée (défaut : medshakeehr) : " input
+    read -er -i "$msehrDbName" -p "Choix du nom de la base de donnée (défaut : medkonnectehr) : " input
     msehrDbName="${input:-$msehrDbName}"
     echo
     read -r -p "Choix du nom de l'utilisateur de la base de données : " mysqlUser
@@ -200,7 +200,7 @@ esac
 }
 
 msehrLatest() {
-    vRelease=$(curl --silent "https://api.github.com/repos/MedShake/MedShakeEHR-base/releases/latest" |
+    vRelease=$(curl --silent "https://api.github.com/repos/MedKonnect/MedKonnectEHR-base/releases/latest" |
         grep '"tag_name":' |                                                          
         sed -E 's/.*"([^"]+)".*/\1/')
         msehrInstall
@@ -218,9 +218,9 @@ msehrInstall() {
 
     mkdir -p "$msehrPath"/public_html
     version=$(echo "$vRelease" | cut -f2 -d "v")
-    mv -f /tmp/MedShakeEHR-base-"$version"/* "$msehrPath"
+    mv -f /tmp/MedKonnectEHR-base-"$version"/* "$msehrPath"
     echo "$msehrPath
-    " > "$msehrPath"/public_html/MEDSHAKEEHRPATH
+    " > "$msehrPath"/public_html/MEDKONNECTEHRPATH
     chown www-data:www-data -R "$msehrPath"
     chmod 755 "$msehrPath" "$msehrPath"/public_html
 
@@ -240,7 +240,7 @@ case "$selectRemove" in
     "1" )
         removeInstallFiles ;;
     "2" ) 
-	    echo "Pensez à configurer votre pare-feu et les mises à jours, plus d'infos sur https://c-medshakeehr.fr/doc.";;
+	    echo "Pensez à configurer votre pare-feu et les mises à jours, plus d'infos sur https://c-medkonnectehr.fr/doc.";;
     * ) 
         echo "Mauvaise valeur saisie"
         selectRemoveInstallFiles ;;
@@ -248,13 +248,13 @@ esac
 }
     
 removeInstallFiles() {
-    rm -r /tmp/"$vRelease".zip /tmp/MedShakeEHR-base-"$version" /tmp/debian-bash-installer.sh
-    echo "Pensez à configurer votre pare-feu et les mises à jours, plus d'infos sur https://c-medshakeehr.fr/doc"
+    rm -r /tmp/"$vRelease".zip /tmp/MedKonnectEHR-base-"$version" /tmp/debian-bash-installer.sh
+    echo "Pensez à configurer votre pare-feu et les mises à jours, plus d'infos sur https://c-medkonnectehr.fr/doc"
 }
 
 selectInstall(){
-    echo "Bienvenue, ce script va vous guider lors de l'installation de MedShakeEHR. Si vous avez besoin d'aide au cours de l'installation : https://c-medshakeehr.fr/doc"
-    read -er -i "$persoInstall" -p "Pour commencer, si vous souhaitez installer MedShakeEHR avec ses valeurs par défaut, tapez 1 [défaut] ou personnaliser l'installation, tapez 2 : " input
+    echo "Bienvenue, ce script va vous guider lors de l'installation de MedKonnectEHR. Si vous avez besoin d'aide au cours de l'installation : https://c-medkonnectehr.fr/doc"
+    read -er -i "$persoInstall" -p "Pour commencer, si vous souhaitez installer MedKonnectEHR avec ses valeurs par défaut, tapez 1 [défaut] ou personnaliser l'installation, tapez 2 : " input
     persoInstall="${input:-$persoInstall}"
     case "$persoInstall" in
         "1" )
@@ -281,7 +281,7 @@ msehrPath=/opt/ehr
 selectInstall=1
 selectLampConfig=1
 msehrDom=msehr.local
-msehrDbName=medshakeehr
+msehrDbName=medkonnectehr
 selectVersion=1
 selectRemove=1
 msehrDep="apache2 composer curl ghostscript git imagemagick mariadb-server ntp pdftk-java php php-bcmath php-curl php-gd php-gnupg php-imagick php-imap php-intl php-mysql php-soap php-xml php-yaml php-zip"

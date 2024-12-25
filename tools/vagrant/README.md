@@ -14,10 +14,10 @@ nano secrets.yml
 
 - Taper la commande suivante `vagrant up`.
 - A la fin de l'exécution de la commande, ouvrir le navigateur se rendre à l'adresse suivante `http://192.168.56.4/install.php`.
-- Vous pouvez finir la configuration de MedShakeEHR.
+- Vous pouvez finir la configuration de MedKonnectEHR.
 - Dans l'écran de configuration rapide cochez la case : `Ne pas créer la base de donnée`
 - Le nom d'utilisateur et le mot de passe utilisateur correspondent à ce que vous avez choisi pour les variables `sqlUserAccount:` et `sqlUserPassword:`
-- [Documentation de MedShakeEHR](https://www.logiciel-cabinet-medical.fr/documentation-technique/)
+- [Documentation de MedKonnectEHR](https://www.logiciel-cabinet-medical.fr/documentation-technique/)
 
 ## Modifications de la configuration
 - si vous avez installé au préalable `vagrant-hostsupdater`, vous pouvez directement taper msehr.local dans la barre d'adresse.

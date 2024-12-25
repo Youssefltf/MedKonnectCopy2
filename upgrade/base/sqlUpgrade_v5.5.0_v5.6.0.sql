@@ -14,7 +14,7 @@ INSERT INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `type`, `
 INSERT INTO `configuration` ( `name`, `level`, `toID`, `module`, `cat`, `type`, `description`, `value`) VALUES ('optionGePatientOuvrirApresCreation', 'default', '0', '', 'Options', 'dossier / liens', 'où rediriger après création d\'un nouveau patient', 'liens');
 
 -- nom de l'application
-INSERT INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `type`, `description`, `value`) VALUES ('designAppName', 'default', '0', '', 'Ergonomie et design', 'texte', 'nom de l\'application', 'MedShakeEHR');
+INSERT INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `type`, `description`, `value`) VALUES ('designAppName', 'default', '0', '', 'Ergonomie et design', 'texte', 'nom de l\'application', 'MedKonnectEHR');
 
 -- pays
 SET @catID = (SELECT data_cat.id FROM data_cat WHERE data_cat.name='addressPerso');

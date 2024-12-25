@@ -23,3 +23,8 @@ indent_style = tab
 indent_style = tab
 [*.md]
 trim_trailing_whitespace = false
+
+# Somes files in medkonnectEHR are indented with 2 space
+[public_html/install.php]
+indent_style = space
+indent_size = 2

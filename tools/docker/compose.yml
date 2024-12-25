@@ -1,11 +1,11 @@
 services:
-  medshakeehr:
-    container_name: msehr
-    # image: marsante/msehr:8.1.1
+  medkonnectehr:
+    container_name: mkehr
+    # image: marsante/mkehr:latest
     build: 
       context: ./
       tags:
-        - "marsante/msehr:master"
+        - "marsante/mkehr:master"
     user: ${USER_ID}:${GROUP_ID}
     restart: unless-stopped
     environment:
@@ -24,7 +24,7 @@ services:
       - db
       - proxy-companion
     volumes: 
-      # - medshakeehr:/var/www/html
+      # - medkonnectehr:/var/www/html
       # if you use bind volume with arbitrary user create first the folder with the good permissions
       - ../../:/var/www/html
     networks:
@@ -159,7 +159,7 @@ secrets:
 volumes:
   db-data:
   certs:
-  # medshakeehr:
+  # medkonnectehr:
 
 networks:
   proxy:

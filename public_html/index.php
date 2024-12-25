@@ -1,23 +1,23 @@
 <?php
 /*
- * This file is part of MedShakeEHR.
+ * This file is part of MedKonnectEHR.
  *
  * Copyright (c) 2017
  * Bertrand Boutillier <b.boutillier@gmail.com>
- * http://www.medshake.net
+ * http://www.medkonnect.net
  *
- * MedShakeEHR is free software: you can redistribute it and/or modify
+ * MedKonnectEHR is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
  *
- * MedShakeEHR is distributed in the hope that it will be useful,
+ * MedKonnectEHR is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ * along with MedKonnectEHR.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -31,9 +31,9 @@
 ini_set('display_errors', 0);
 setlocale(LC_ALL, "fr_FR.UTF-8");
 
-if (($homepath = getenv("MEDSHAKEEHRPATH")) === false) {
-	if (!is_file("MEDSHAKEEHRPATH") or ($homepath = file_get_contents("MEDSHAKEEHRPATH")) === false) {
-		die("La variable d'environnement MEDSHAKEEHRPATH n'a pas été fixée.<br>Veuillez insérer <code>SetEnv MEDSHAKEEHRPATH /chemin/vers/MedShakeEHR</code> dans votre .htaccess ou la configuration du serveur.<br>Alternativement, vous pouvez créer un fichier 'MEDSHAKEEHRPATH' contenant <code>/chemin/vers/MedShakeEHR</code> et le placer dans le dossier web de MedShakeEHR");
+if (($homepath = getenv("MEDKONNECTEHRPATH")) === false) {
+	if (!is_file("MEDKONNECTEHRPATH") or ($homepath = file_get_contents("MEDKONNECTEHRPATH")) === false) {
+		die("La variable d'environnement MEDKONNECTEHRPATH n'a pas été fixée.<br>Veuillez insérer <code>SetEnv MEDKONNECTEHRPATH /chemin/vers/MedKonnectEHR</code> dans votre .htaccess ou la configuration du serveur.<br>Alternativement, vous pouvez créer un fichier 'MEDKONNECTEHRPATH' contenant <code>/chemin/vers/MedKonnectEHR</code> et le placer dans le dossier web de MedKonnectEHR");
 	}
 	$homepath = trim(str_replace("\n", '', $homepath));
 }
@@ -44,7 +44,7 @@ session_start();
 /////////// Composer class auto-upload
 require $homepath . 'vendor/autoload.php';
 
-/////////// Class medshakeEHR auto-upload
+/////////// Class medkonnectEHR auto-upload
 spl_autoload_register(function ($class) {
 	global $homepath;
 	if (is_file($homepath . 'class/' . $class . '.php')) {
@@ -171,7 +171,7 @@ if ($match and is_file($homepath . 'controlers/' . $match['target'] . '.php')) {
 } elseif ($match and (is_file($homepath . 'controlers/module/' . $p['user']['module'] . '/' . $match['target'] . '.php') ||
 	is_file($homepath . 'controlers/module/' . $match['target'] . '.php'))) {
 
-	// Gestion des controlers additionnels des modules (controlers non existant dans MedShakeEHR-base)
+	// Gestion des controlers additionnels des modules (controlers non existant dans MedKonnectEHR-base)
 	if (isset($p['user']['id'])) {
 		include $homepath . 'controlers/module/' . $p['user']['module'] . '/' . $match['target'] . '.php';
 	} else {

@@ -1,23 +1,23 @@
 <?php
 /*
- * This file is part of MedShakeEHR.
+ * This file is part of MedKonnectEHR.
  *
  * Copyright (c) 2020
  * Bertrand Boutillier <b.boutillier@gmail.com>
- * http://www.medshake.net
+ * http://www.medkonnect.net
  *
- * MedShakeEHR is free software: you can redistribute it and/or modify
+ * MedKonnectEHR is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
  *
- * MedShakeEHR is distributed in the hope that it will be useful,
+ * MedKonnectEHR is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ * along with MedKonnectEHR.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -81,7 +81,7 @@ $pluginName = false;
 $zip = new ZipArchive;
 if ($zip->open($fichier['tmp_name'])) {
 	// nom
-	$pluginName = trim($zip->getFromName(".pluginMedShakeEHR"));
+	$pluginName = trim($zip->getFromName(".pluginMedKonnectEHR"));
 	if (!is_string($pluginName) or strlen($pluginName) > 30 or strlen($pluginName) < 3) die("Erreur: le nom du plugin ne peut être déterminé ou est invalide");
 
 	// infos plugin
@@ -110,14 +110,14 @@ if ($zip->open($fichier['tmp_name'])) {
 			}
 
 			@unlink($p['homepath'] . 'public_html/install.php');
-			@unlink($p['homepath'] . '.pluginMedShakeEHR');
+			@unlink($p['homepath'] . '.pluginMedKonnectEHR');
 		} else {
 			$zip->close();
 			die("Erreur: une erreur est survenue durant la décompression du fichier");
 		}
 	} else {
 		$zip->close();
-		die("Erreur: Le fichier n'est pas un fichier MedShakeEHR");
+		die("Erreur: Le fichier n'est pas un fichier MedKonnectEHR");
 	}
 } else {
 	die("Erreur: le fichier n'a pas pu être ouvert pour une raison inconnue");

@@ -1,23 +1,23 @@
 <?php
 /*
- * This file is part of MedShakeEHR.
+ * This file is part of MedKonnectEHR.
  *
  * Copyright (c) 2017
  * fr33z00 <https://www.github.com/fr33z00>
- * http://www.medshake.net
+ * http://www.medkonnect.net
  *
- * MedShakeEHR is free software: you can redistribute it and/or modify
+ * MedKonnectEHR is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
  *
- * MedShakeEHR is distributed in the hope that it will be useful,
+ * MedKonnectEHR is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ * along with MedKonnectEHR.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -106,12 +106,12 @@ class msClicRDV
 	private function _getLocalPatients()
 	{
 		$ret = array();
-		//ret[0]=array(idMedShake=>idClicRDV)
+		//ret[0]=array(idMedKonnect=>idClicRDV)
 		$ret[0] = msSQL::sql2tabKey("SELECT od.toID, od.value
               FROM objets_data AS od left join data_types AS dt
               ON od.typeID=dt.id AND od.outdated='' AND od.deleted=''
               WHERE dt.name='clicRdvPatientId'", 'toID', 'value');
-		//ret[1]=array(idClicRDV=>idMedShake)
+		//ret[1]=array(idClicRDV=>idMedKonnect)
 		if (!is_array($ret[0])) {
 			return (array(array(), array()));
 		}
@@ -120,7 +120,7 @@ class msClicRDV
 	}
 
 	// liste des patients qui sont sous un id externe et un interne
-	// survient quand créés dans MedShake puis ont pris rdv sur clic
+	// survient quand créés dans MedKonnect puis ont pris rdv sur clic
 	private function _getRelatedPatients()
 	{
 		$ret = array();
@@ -177,7 +177,7 @@ class msClicRDV
 				'calendar_id' => $this->_calID,
 				'text' => $text,
 				'intervention_id' => $event['type'] == '[off]' ? 0 : $interventions[$event['type']][0],
-				'taker' => 'MedShakeEHR',
+				'taker' => 'MedKonnectEHR',
 				'comments' => $event['motif'],
 				'from_web' => 0
 			);
@@ -393,7 +393,7 @@ class msClicRDV
 					'calendar_id' => $this->_calID,
 					'text' => $text,
 					'intervention_id' => $vlocal['type'] == '[off]' ? 0 : $interventions[0][$vlocal['type']][0],
-					'taker' => 'MedShakeEHR',
+					'taker' => 'MedKonnectEHR',
 					'comments' => $vlocal['motif'],
 					'from_web' => 0
 				);

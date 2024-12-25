@@ -1,29 +1,29 @@
 <?php
 /*
- * This file is part of MedShakeEHR.
- * http://www.medshake.net
+ * This file is part of MedKonnectEHR.
+ * http://www.medkonnect.net
  *
  * Copyright (c) 2021     DEMAREST Maxime <maxime@indelog.fr>
  *
- * MedShakeEHR is free software: you can redistribute it and/or modify
+ * MedKonnectEHR is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
  *
- * MedShakeEHR is distributed in the hope that it will be useful,
+ * MedKonnectEHR is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ * along with MedKonnectEHR.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
  * @author	DEMAREST Maxime <maxime@indelog.fr>
  * @brief	Class pour gérer les tags universels.
  * @details	Les tags universels permettent de disposer d'une fonction
- *			d'étiquetage commune à tous les éléments de MedShakeEHR la plus
+ *			d'étiquetage commune à tous les éléments de MedKonnectEHR la plus
  *			indépendante possible du fonctionnement des éléments tagués
  *			permettant de grouper facilement ces éléments ainsi que de
  *			filtrer des résultats de recherches sur ceux-ci.
@@ -104,13 +104,13 @@ class msUnivTags
 	private $_color;
 
 	/**
-	 * @var $_droitCreSup Nom du droit dans la configuration Medshake pour
+	 * @var $_droitCreSup Nom du droit dans la configuration Medkonnect pour
 	 *                    créer et supprimer les tags en fonction leurs type.
 	 */
 	private $_droitCreSup;
 
 	/**
-	 * @var $_droitAjoRet Nom du droit dans la configuration Medshake pour
+	 * @var $_droitAjoRet Nom du droit dans la configuration Medkonnect pour
 	 *                    ajouter et retier un tag sur un élément en fonction
 	 *                    de son type.
 	 */
