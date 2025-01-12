@@ -73,7 +73,7 @@ if ($relations = $patient->getRelations(['identite'])) {
 	}
 }
 
-$msehrJsonData = array(
+$mkehrJsonData = array(
 	'actes' => $actes,
 	'returnUrl' => $p['config']['protocol'] . $p['config']['host'] . $p['config']['urlHostSuffixe'] . '/rest/callbackFse/',
 	'returnData' => array(
@@ -86,11 +86,11 @@ $msehrJsonData = array(
 if ($_GET['mode'] == "simple") {
 	$data = array(
 		'formFields' => [
-			'msehrParams' => json_encode($msehrJsonData),
+			'mkehrParams' => json_encode($mkehrJsonData),
 			'numero_rpps' => $pratData['rpps'],
 		],
 		'actes' => $actes,
-		'jsonMsehrParams' => $msehrJsonData
+		'jsonMkehrParams' => $mkehrJsonData
 	);
 } else {
 	$data = array(
@@ -100,10 +100,10 @@ if ($_GET['mode'] == "simple") {
 			'medecin_traitant_declare' => $medecin_traitant_declare,
 			'prenom_1180' => $prenom_1180,
 			'nom_1180' => $nom_1180,
-			'msehrParams' => json_encode($msehrJsonData)
+			'mkehrParams' => json_encode($mkehrJsonData)
 		),
 		'actes' => $actes,
-		'jsonMsehrParams' => $msehrJsonData
+		'jsonMkehrParams' => $mkehrJsonData
 	);
 }
 

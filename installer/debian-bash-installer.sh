@@ -22,9 +22,9 @@
 # @author Michaël Val
 # @contrib B-Yasmina
 
-selectMsehrPath() {
-    read -er -i "$msehrPath" -p "Choix du dossier d'installation [défaut : /opt/ehr] : " input
-    msehrPath="${input:-$msehrPath}"
+selectMkehrPath() {
+    read -er -i "$mkehrPath" -p "Choix du dossier d'installation [défaut : /opt/ehr] : " input
+    mkehrPath="${input:-$mkehrPath}"
 }
 
 selectPackages() {
@@ -37,7 +37,7 @@ selectPackages() {
         "1" )
             packagesInstall ;;
         "2" )
-            msehrDep="${msehrDep} ${extraDicom}"
+            mkehrDep="${mkehrDep} ${extraDicom}"
             packagesInstall
             orthancConfig ;;
         "3" ) 
@@ -49,7 +49,7 @@ selectPackages() {
 }
 
 packagesInstall(){
-	apt update && apt upgrade -y && apt install -y $msehrDep
+	apt update && apt upgrade -y && apt install -y $mkehrDep
 }
 
 orthancConfig(){
@@ -91,47 +91,47 @@ esac
 }
 
 selectdomain() {
-    read -er -i "$msehrDom" -p "Choix du domaine [défaut : msehr.local] : " input
-    msehrDom="${input:-$msehrDom}"
+    read -er -i "$mkehrDom" -p "Choix du domaine [défaut : mkehr.local] : " input
+    mkehrDom="${input:-$mkehrDom}"
 }
 
 certGen() {
-    mkdir /etc/ssl/"$msehrDom"
-    cd /etc/ssl/"$msehrDom" || exit
-    openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout "$msehrDom".key -out "$msehrDom".crt -subj "/CN=$msehrDom" -addext "subjectAltName=DNS:$msehrDom"
+    mkdir /etc/ssl/"$mkehrDom"
+    cd /etc/ssl/"$mkehrDom" || exit
+    openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout "$mkehrDom".key -out "$mkehrDom".crt -subj "/CN=$mkehrDom" -addext "subjectAltName=DNS:$mkehrDom"
 }
 
 apacheConfig() {
     ## Configuration vhost http
     echo "<VirtualHost *:80>
-        ServerName $msehrDom
-        ServerAlias msehr ehr medkonnectehr MedKonnectEHR
-        RedirectMatch     permanent ^(.*)$ https://$msehrDom\$1
+        ServerName $mkehrDom
+        ServerAlias mkehr ehr medkonnectehr MedKonnectEHR
+        RedirectMatch     permanent ^(.*)$ https://$mkehrDom\$1
     </VirtualHost>
 
     <VirtualHost *:443>
-        ServerName $msehrDom
-        ServerAlias msehr ehr medkonnectehr MedKonnectEHR
-        DocumentRoot $msehrPath/public_html
+        ServerName $mkehrDom
+        ServerAlias mkehr ehr medkonnectehr MedKonnectEHR
+        DocumentRoot $mkehrPath/public_html
         RewriteEngine On
         SSLEngine On
-        SSLCertificateFile /etc/ssl/$msehrDom/$msehrDom.crt
-        SSLCertificateKeyFile /etc/ssl/$msehrDom/$msehrDom.key
-        <Directory $msehrPath/public_html>
+        SSLCertificateFile /etc/ssl/$mkehrDom/$mkehrDom.crt
+        SSLCertificateKeyFile /etc/ssl/$mkehrDom/$mkehrDom.key
+        <Directory $mkehrPath/public_html>
             Options FollowSymLinks
             AllowOverride all
             Require all granted
         </Directory>
-        ErrorLog /var/log/apache2/error.$msehrDom.log
-        CustomLog /var/log/apache2/access.$msehrDom.log combined
+        ErrorLog /var/log/apache2/error.$mkehrDom.log
+        CustomLog /var/log/apache2/access.$mkehrDom.log combined
     </VirtualHost>
-    " > /etc/apache2/sites-available/"$msehrDom".conf
+    " > /etc/apache2/sites-available/"$mkehrDom".conf
 
     a2enmod rewrite headers ssl
 
     a2dissite 000-default.conf default-ssl.conf
 
-    a2ensite "$msehrDom "
+    a2ensite "$mkehrDom "
 
     sed -i 's/ServerTokens OS/ServerTokens Prod/' /etc/apache2/conf-available/security.conf
     sed -i 's/ServerSignature On/ServerSignature Off/' /etc/apache2/conf-available/security.conf
@@ -157,8 +157,8 @@ mariadbConfig() {
         [ "$mysqlRootPswd" = "$mysqlRootPswd1" ] && break || echo "Mot de passe non correspondant: veuillez reessayez."
     done
     echo
-    read -er -i "$msehrDbName" -p "Choix du nom de la base de donnée (défaut : medkonnectehr) : " input
-    msehrDbName="${input:-$msehrDbName}"
+    read -er -i "$mkehrDbName" -p "Choix du nom de la base de donnée (défaut : medkonnectehr) : " input
+    mkehrDbName="${input:-$mkehrDbName}"
     echo
     read -r -p "Choix du nom de l'utilisateur de la base de données : " mysqlUser
     echo
@@ -177,8 +177,8 @@ mariadbConfig() {
     SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${mysqlRootPswd}');
     DELETE FROM mysql.user WHERE User='';
     DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-    CREATE DATABASE $msehrDbName;
-    GRANT ALL ON $msehrDbName.* TO '${mysqlUser}'@'localhost' IDENTIFIED BY '${mysqlUserPswd}' WITH GRANT OPTION;
+    CREATE DATABASE $mkehrDbName;
+    GRANT ALL ON $mkehrDbName.* TO '${mysqlUser}'@'localhost' IDENTIFIED BY '${mysqlUserPswd}' WITH GRANT OPTION;
     FLUSH PRIVILEGES;
 EOF
 }
@@ -188,9 +188,9 @@ selectVersion() {
     selectVersion="${input:-$selectVersion}"
     case $selectVersion in
     "1" )
-        msehrLatest ;;  
+        mkehrLatest ;;  
     "2" )
-        selectMsehrVersion ;;
+        selectMkehrVersion ;;
     "3" )
         selectRemoveInstallFiles ;;
     * ) 
@@ -199,36 +199,36 @@ selectVersion() {
 esac 
 }
 
-msehrLatest() {
+mkehrLatest() {
     vRelease=$(curl --silent "https://api.github.com/repos/MedKonnect/MedKonnectEHR-base/releases/latest" |
         grep '"tag_name":' |                                                          
         sed -E 's/.*"([^"]+)".*/\1/')
-        msehrInstall
+        mkehrInstall
 }	
 
-selectMsehrVersion() {
+selectMkehrVersion() {
     read -r -p "Tapez la version sous la forme vX.X.X : " vRelease
-    msehrInstall
+    mkehrInstall
 }	
 
-msehrInstall() {
+mkehrInstall() {
     wget --no-check-certificate https://github.com/MedShake/MedShakeEHR-base/archive/"$vRelease".zip -P /tmp
 
     unzip -q -o -d /tmp /tmp/"$vRelease".zip 
 
-    mkdir -p "$msehrPath"/public_html
+    mkdir -p "$mkehrPath"/public_html
     version=$(echo "$vRelease" | cut -f2 -d "v")
-    mv -f /tmp/MedKonnectEHR-base-"$version"/* "$msehrPath"
-    echo "$msehrPath
-    " > "$msehrPath"/public_html/MEDKONNECTEHRPATH
-    chown www-data:www-data -R "$msehrPath"
-    chmod 755 "$msehrPath" "$msehrPath"/public_html
+    mv -f /tmp/MedKonnectEHR-base-"$version"/* "$mkehrPath"
+    echo "$mkehrPath
+    " > "$mkehrPath"/public_html/MEDKONNECTEHRPATH
+    chown www-data:www-data -R "$mkehrPath"
+    chmod 755 "$mkehrPath" "$mkehrPath"/public_html
 
-    cd "$msehrPath" || exit
+    cd "$mkehrPath" || exit
     su www-data -s/bin/bash -c 'composer install --no-interaction --no-cache -o'
-    cd "$msehrPath"/public_html || exit
+    cd "$mkehrPath"/public_html || exit
     su www-data -s/bin/bash -c 'composer install --no-interaction --no-cache -o'
-    su www-data -s/bin/bash -c  "php $msehrPath/public_html/install.php -N -s localhost -d $msehrDbName -u $mysqlUser -p $mysqlUserPswd -r https -D $msehrDom -o localhost"
+    su www-data -s/bin/bash -c  "php $mkehrPath/public_html/install.php -N -s localhost -d $mkehrDbName -u $mysqlUser -p $mysqlUserPswd -r https -D $mkehrDom -o localhost"
 
     selectRemoveInstallFiles
 }  
@@ -262,9 +262,9 @@ selectInstall(){
             certGen
             apacheConfig
             mariadbConfig
-            msehrLatest ;;
+            mkehrLatest ;;
         "2" )
-            selectMsehrPath
+            selectMkehrPath
             selectPackages
             selectLampConfig
             selectVersion ;;
@@ -277,14 +277,14 @@ selectInstall(){
 # Variables globales par défauts.
 caracteres_interdits="\"|\'|\$|\,|\[|\]|\*|\?|\{|\}|\~|\#|\%|\<|\>|\||\^|\;"
 persoInstall=1
-msehrPath=/opt/ehr
+mkehrPath=/opt/ehr
 selectInstall=1
 selectLampConfig=1
-msehrDom=msehr.local
-msehrDbName=medkonnectehr
+mkehrDom=mkehr.local
+mkehrDbName=medkonnectehr
 selectVersion=1
 selectRemove=1
-msehrDep="apache2 composer curl ghostscript git imagemagick mariadb-server ntp pdftk-java php php-bcmath php-curl php-gd php-gnupg php-imagick php-imap php-intl php-mysql php-soap php-xml php-yaml php-zip"
+mkehrDep="apache2 composer curl ghostscript git imagemagick mariadb-server ntp pdftk-java php php-bcmath php-curl php-gd php-gnupg php-imagick php-imap php-intl php-mysql php-soap php-xml php-yaml php-zip"
 extraDicom="orthanc"
 
 clear

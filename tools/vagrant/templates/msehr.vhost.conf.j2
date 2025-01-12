@@ -1,13 +1,13 @@
 <VirtualHost *:80>
 	ServerName {{ domain }}
-	ServerAlias msehr ehr medkonnectehr MedKonnectEHR
+	ServerAlias mkehr ehr medkonnectehr MedKonnectEHR
 	RedirectMatch     permanent ^(.*)$ https://{{ domain }}$1
 
 </VirtualHost> 
 
 <VirtualHost *:443>
 	ServerName {{ domain }}
-	ServerAlias msehr ehr medkonnectehr MedKonnectEHR 
+	ServerAlias mkehr ehr medkonnectehr MedKonnectEHR 
 	DocumentRoot /opt/ehr/public_html
 	RewriteEngine On
 	SSLEngine On

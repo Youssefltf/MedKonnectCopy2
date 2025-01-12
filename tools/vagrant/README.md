@@ -20,7 +20,7 @@ nano secrets.yml
 - [Documentation de MedKonnectEHR](https://www.logiciel-cabinet-medical.fr/documentation-technique/)
 
 ## Modifications de la configuration
-- si vous avez installé au préalable `vagrant-hostsupdater`, vous pouvez directement taper msehr.local dans la barre d'adresse.
+- si vous avez installé au préalable `vagrant-hostsupdater`, vous pouvez directement taper mkehr.local dans la barre d'adresse.
 - si vous avez libvirt et virtualbox d'installés sur la même machine, précisez `--provider virtualbox` ou `--provider libvirt`. 
 - pour libvirt je vous conseille de changer l'adresse du `private network` pour éviter les conflits avec virtualbox
 - Pour arrêter la machine virtuelle taper `vagrant halt`.

@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/bookworm64va"
-  config.vm.define "msehr"
-  config.vm.hostname = "msehr.local"
+  config.vm.define "mkehr"
+  config.vm.hostname = "mkehr.local"
   config.vm.network "private_network", ip: "192.168.56.4"
   config.vm.synced_folder ".", "/vagrant", type: "rsync"
 
