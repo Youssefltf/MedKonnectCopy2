@@ -1,22 +1,22 @@
 {#
- # This file is part of MedShakeEHR.
+ # This file is part of MedKonnectEHR.
  #
  # Copyright (c) 2017
  # fr33z00 <https://github.com/fr33z00>
- # http://www.medshake.net
+ # http://www.medkonnect.net
  #
- # MedShakeEHR is free software: you can redistribute it and/or modify
+ # MedKonnectEHR is free software: you can redistribute it and/or modify
  # it under the terms of the GNU General Public License as published by
  # the Free Software Foundation, either version 3 of the License, or
  # any later version.
  #
- # MedShakeEHR is distributed in the hope that it will be useful,
+ # MedKonnectEHR is distributed in the hope that it will be useful,
  # but WITHOUT ANY WARRANTY; without even the implied warranty of
  # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  # GNU General Public License for more details.
  #
  # You should have received a copy of the GNU General Public License
- # along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ # along with MedKonnectEHR.  If not, see <http://www.gnu.org/licenses/>.
  #/
 
 /##
@@ -105,7 +105,7 @@
       {% include('inc-tabUserParametersAdministratif.html.twig') %}
     </div>
 
-    {# formulaire mot de passe MedShake #}
+    {# formulaire mot de passe MedKonnect #}
     <div role="tabpanel" class="tab-pane" id="pmdp" >
       {% include('inc-tabUserParametersPassword.html.twig') %}
     </div>
@@ -117,7 +117,7 @@
       </div>
     {% endif %}
 
-    {# formulaire Agenda MedShake #}
+    {# formulaire Agenda MedKonnect #}
     {% if page.hasAgenda %}
       <div role="tabpanel" class="tab-pane" id="pagenda">
         {% include('inc-tabUserParametersAgenda.html.twig') %}

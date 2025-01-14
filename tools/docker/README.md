@@ -1,6 +1,6 @@
-#  MedShakeEHR Docker Compose
+#  MedKonnectEHR Docker Compose
 
-Pile LAMP pour MedShakeEHR en local :
+Pile LAMP pour MedKonnectEHR en local :
 * PHP
 * Apache
 * MySQL
@@ -18,23 +18,23 @@ Pile LAMP pour MedShakeEHR en local :
 cp sample.env .env
 nano .env
 ```
-*  Modifiez l'image msehr de votre choix. 
+*  Modifiez l'image mkehr de votre choix. 
 
 ```bash
 nano compose.yml
-medshakeehr:
-    image: marsante/msehrtest:x.x.x
+medkonnectehr:
+    image: marsante/mkehrtest:x.x.x
 ```
 
 * Ou modifiez le fichier compose avec le Dockerfile de votre choix. 
 
 ```bash
 nano compose.yml
-medshakeehr:
+medkonnectehr:
     build: ./
 ```
 
-* Vous pouvez aussi modifier le Dockerfile avec votre clone de MedShakeEHR pour tester vos nouvelles fonctionnalités.
+* Vous pouvez aussi modifier le Dockerfile avec votre clone de MedKonnectEHR pour tester vos nouvelles fonctionnalités.
 * Puis lancez la stack :
 ```bash
 docker compose up --build -d
@@ -42,13 +42,13 @@ docker compose up --build -d
 # docker-compose up --build -d si vous avez une ancienne version de docker compose
 ```
 suivant votre configuration.
-* Tapez [msehr.localhost/install.php](msehr.localhost/install.php) dans votre navigateur.
+* Tapez [mkehr.localhost/install.php](mkehr.localhost/install.php) dans votre navigateur.
 * Suivez les instructions.
 
 * Pour ajouter un module, ou le mettre à jour :
 
 ```bash
-docker exec -ti msehr php /usr/local/bin/msehr.upgrade.php base
+docker exec -ti mkehr php /usr/local/bin/mkehr.upgrade.php base
 ```
 
 * les arguments disponibles sont : base, chiro, gyneco, general, thermal, mpr, osteo
@@ -59,7 +59,7 @@ docker exec -ti msehr php /usr/local/bin/msehr.upgrade.php base
 * Relancez la stack docker compose ainsi `docker compose --profile dicom`
 
 ## phpMyAdmin
-* Relancez la stack docker compose ainsi `docker compose --profile debug` puis rendez-vous sur [pma.msehr.localhost/](pma.msehr.localhost/)
+* Relancez la stack docker compose ainsi `docker compose --profile debug` puis rendez-vous sur [pma.mkehr.localhost/](pma.mkehr.localhost/)
 
 ## VPN (Wireguard)
 * Modifiez le .env en personnalisant avec vos données réseaux / domaine.

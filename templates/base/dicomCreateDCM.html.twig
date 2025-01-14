@@ -1,22 +1,22 @@
 {#
- # This file is part of MedShakeEHR.
+ # This file is part of MedKonnectEHR.
  #
  # Copyright (c) 2017
  # Bertrand Boutillier <b.boutillier@gmail.com>
- # http://www.medshake.net
+ # http://www.medkonnect.net
  #
- # MedShakeEHR is free software: you can redistribute it and/or modify
+ # MedKonnectEHR is free software: you can redistribute it and/or modify
  # it under the terms of the GNU General Public License as published by
  # the Free Software Foundation, either version 3 of the License, or
  # any later version.
  #
- # MedShakeEHR is distributed in the hope that it will be useful,
+ # MedKonnectEHR is distributed in the hope that it will be useful,
  # but WITHOUT ANY WARRANTY; without even the implied warranty of
  # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  # GNU General Public License for more details.
  #
  # You should have received a copy of the GNU General Public License
- # along with MedShakeEHR.  If( not, see) <http://www.gnu.org/licenses/>.
+ # along with MedKonnectEHR.  If( not, see) <http://www.gnu.org/licenses/>.
  #/
 
 /##
@@ -35,7 +35,7 @@
 (0002,0003) UI [1.2.276.0.7230010.3.0.0.9.11154.1448031138.805061]              #  58, 1 MediaStorageSOPInstanceUID
 (0002,0010) UI =LittleEndianExplicit                                            #  20, 1 TransferSyntaxUID
 (0002,0012) UI [1.2.276.0.7230010.3.0.0.9.9]                                    #  28, 1 ImplementationClassUID
-(0002,0013) SH [MEDSHAKEEHR]                                                    #  16, 1 ImplementationVersionName
+(0002,0013) SH [MEDKONNECTEHR]                                                    #  16, 1 ImplementationVersionName
 
 # Dicom-Data-Set
 # Used TransferSyntax: Little Endian Explicit
@@ -53,9 +53,9 @@
 (0008,0032) TM [{{ "now"|date("His") }}]    #AcquisitionTime
 (0008,0050) SH [MS.{{ "now"|date("YmdH") }}]#AccessionNumber
 (0008,0060) CS [XC]                         #Modality
-(0008,0070) LO [MEDSHAKEEHR]                #Manufacturer
+(0008,0070) LO [MEDKONNECTEHR]                #Manufacturer
 (0008,0090) PN [{% if page.prat.lastname %}{{ page.prat.lastname }}{% else %}{{ page.prat.birthname }}{% endif %}^{{ page.prat.firstname }}]     #ReferringPhysiciansName
-(0008,1010) SH [MEDSHAKEEHR PhoneCapture]               #StationName
+(0008,1010) SH [MEDKONNECTEHR PhoneCapture]               #StationName
 (0008,1070) PN [{% if page.prat.lastname %}{{ page.prat.lastname }}{% else %}{{ page.prat.birthname }}{% endif %}^{{ page.prat.firstname }}]    #OperatorsName
 (0010,0010) PN [{% if page.patient.lastname %}{{ page.patient.lastname }}{% else %}{{ page.patient.birthname }}{% endif %}^{{ page.patient.firstname }}]  #PatientsName
 (0010,0020) LO [{{ page.patient.dicomPatientID }}] #PatientID

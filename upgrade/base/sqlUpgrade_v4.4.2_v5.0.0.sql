@@ -15,9 +15,9 @@ INSERT IGNORE INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `t
 
 -- Paramètres de configuration : API CCAM NGAP
 INSERT IGNORE INTO `configuration`(`name`, `cat`, `level`, `type`, `description`, `value`) VALUES
-('apiCcamNgapUrl', 'Règlements', 'default', 'url', 'URL de l\'API CCAM NGAP MedShake', '');
+('apiCcamNgapUrl', 'Règlements', 'default', 'url', 'URL de l\'API CCAM NGAP MedKonnect', '');
 INSERT IGNORE INTO `configuration`(`name`, `cat`, `level`, `type`, `description`, `value`) VALUES
-('apiCcamNgapKey', 'Règlements', 'default', 'string', 'Clef de l\'API CCAM NGAP MedShake', '');
+('apiCcamNgapKey', 'Règlements', 'default', 'string', 'Clef de l\'API CCAM NGAP MedKonnect', '');
 
 -- Data types pour précision règlement
 SET @catID = (SELECT data_cat.id FROM data_cat WHERE data_cat.name='reglementItems');

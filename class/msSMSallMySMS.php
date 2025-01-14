@@ -1,23 +1,23 @@
 <?php
 /*
- * This file is part of MedShakeEHR.
+ * This file is part of MedKonnectEHR.
  *
  * Copyright (c) 2017
  * Bertrand Boutillier <b.boutillier@gmail.com>
- * http://www.medshake.net
+ * http://www.medkonnect.net
  *
- * MedShakeEHR is free software: you can redistribute it and/or modify
+ * MedKonnectEHR is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
  *
- * MedShakeEHR is distributed in the hope that it will be useful,
+ * MedKonnectEHR is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ * along with MedKonnectEHR.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -314,7 +314,7 @@ class msSMSallMySMS
 	 * @param boolean $force Force la re-émission de la campage même si celle-ci existe déjà (default false)
 	 * @return string              Retour JSON de l'api
 	 */
-	public function sendCampaign($simulate = 0, $force = 0)
+	public function sendCampaign($simulate = 1, $force = 1)
 	{
 		global $p;
 

@@ -1,26 +1,26 @@
 <?php
 /*
- * This file is part of MedShakeEHR.
+ * This file is part of MedKonnectEHR.
  *
  * Copyright (c) 2017
  * Bertrand Boutillier <b.boutillier@gmail.com>
- * http://www.medshake.net
+ * http://www.medkonnect.net
  *
- * MedShakeEHR is free software: you can redistribute it and/or modify
+ * MedKonnectEHR is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
  *
- * MedShakeEHR is distributed in the hope that it will be useful,
+ * MedKonnectEHR is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ * along with MedKonnectEHR.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Les termes et conditions de la présente licence GPL v3 ne s’appliquent pas aux composants APICRYPT, fournis par la société APICEM SARL, APICEM Développement ou l’association APICEM, qui restent la propriété exclusive desdites entités. Le code source des composants APICRYPT ne saurait être distribué dans le cadre de la licence du logiciel MedShakeEHR.
- * La réutilisation du code source du logiciel MedShakeEHR à quelques fins que ce soit nécessitera pour le responsable de développements de prendre contact avec la société APICEM SARL afin de procéder à l’établissement d’un contrat de partenariat ainsi qu’à des tests de validité de l’intégration des composants APICRYPT.
+ * Les termes et conditions de la présente licence GPL v3 ne s’appliquent pas aux composants APICRYPT, fournis par la société APICEM SARL, APICEM Développement ou l’association APICEM, qui restent la propriété exclusive desdites entités. Le code source des composants APICRYPT ne saurait être distribué dans le cadre de la licence du logiciel MedKonnectEHR.
+ * La réutilisation du code source du logiciel MedKonnectEHR à quelques fins que ce soit nécessitera pour le responsable de développements de prendre contact avec la société APICEM SARL afin de procéder à l’établissement d’un contrat de partenariat ainsi qu’à des tests de validité de l’intégration des composants APICRYPT.
  * Le logiciel issu de cette réutilisation ne peut en effet prétendre être « compatible APICRYPT » sans avoir effectué ces démarches préalables et la société APICEM SARL ne saurait être tenue responsable d’éventuels problèmes de réceptions, de traitements ou d’envois de messages au travers de ce logiciel.
  *
  */

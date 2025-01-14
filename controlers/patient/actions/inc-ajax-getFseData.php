@@ -1,23 +1,23 @@
 <?php
 /*
- * This file is part of MedShakeEHR.
+ * This file is part of MedKonnectEHR.
  *
  * Copyright (c) 2018
  * Bertrand Boutillier <b.boutillier@gmail.com>
- * http://www.medshake.net
+ * http://www.medkonnect.net
  *
- * MedShakeEHR is free software: you can redistribute it and/or modify
+ * MedKonnectEHR is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
  *
- * MedShakeEHR is distributed in the hope that it will be useful,
+ * MedKonnectEHR is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ * along with MedKonnectEHR.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -73,7 +73,7 @@ if ($relations = $patient->getRelations(['identite'])) {
 	}
 }
 
-$msehrJsonData = array(
+$mkehrJsonData = array(
 	'actes' => $actes,
 	'returnUrl' => $p['config']['protocol'] . $p['config']['host'] . $p['config']['urlHostSuffixe'] . '/rest/callbackFse/',
 	'returnData' => array(
@@ -86,11 +86,11 @@ $msehrJsonData = array(
 if ($_GET['mode'] == "simple") {
 	$data = array(
 		'formFields' => [
-			'msehrParams' => json_encode($msehrJsonData),
+			'mkehrParams' => json_encode($mkehrJsonData),
 			'numero_rpps' => $pratData['rpps'],
 		],
 		'actes' => $actes,
-		'jsonMsehrParams' => $msehrJsonData
+		'jsonMkehrParams' => $mkehrJsonData
 	);
 } else {
 	$data = array(
@@ -100,10 +100,10 @@ if ($_GET['mode'] == "simple") {
 			'medecin_traitant_declare' => $medecin_traitant_declare,
 			'prenom_1180' => $prenom_1180,
 			'nom_1180' => $nom_1180,
-			'msehrParams' => json_encode($msehrJsonData)
+			'mkehrParams' => json_encode($mkehrJsonData)
 		),
 		'actes' => $actes,
-		'jsonMsehrParams' => $msehrJsonData
+		'jsonMkehrParams' => $mkehrJsonData
 	);
 }
 

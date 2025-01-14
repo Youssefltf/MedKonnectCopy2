@@ -1,23 +1,23 @@
 <?php
 /*
- * This file is part of MedShakeEHR.
+ * This file is part of MedKonnectEHR.
  *
  * Copyright (c) 2017
  * Bertrand Boutillier <b.boutillier@gmail.com>
- * http://www.medshake.net
+ * http://www.medkonnect.net
  *
- * MedShakeEHR is free software: you can redistribute it and/or modify
+ * MedKonnectEHR is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
  *
- * MedShakeEHR is distributed in the hope that it will be useful,
+ * MedKonnectEHR is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ * along with MedKonnectEHR.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -41,13 +41,13 @@ ini_set('display_errors', 1);
 setlocale(LC_ALL, "fr_FR.UTF-8");
 session_start();
 
-if (!empty($homepath = getenv("MEDSHAKEEHRPATH"))) $homepath = getenv("MEDSHAKEEHRPATH");
+if (!empty($homepath = getenv("MEDKONNECTEHRPATH"))) $homepath = getenv("MEDKONNECTEHRPATH");
 else $homepath = preg_replace("#cron$#", '', __DIR__);
 
 /////////// Composer class auto-upload
 require $homepath . 'vendor/autoload.php';
 
-/////////// Class medshakeEHR auto-upload
+/////////// Class medkonnectEHR auto-upload
 spl_autoload_register(function ($class) {
 	global $homepath;
 	include $homepath . 'class/' . $class . '.php';
@@ -141,7 +141,7 @@ foreach ($users as $userID => $value) {
 		$logFileDirectory = $p['config']['mailRappelLogCampaignDirectory'] . date('Y/m/d/');
 		$logFile = $logFileDirectory . 'RappelsRDV.json';
 
-		openlog('MedShakeEHR', LOG_PID | LOG_PERROR, LOG_LOCAL0);
+		openlog('MedKonnectEHR', LOG_PID | LOG_PERROR, LOG_LOCAL0);
 		// Ne pas re-émmetre le rapel de rendez-vous si celui existe déjà
 		if (file_exists(($logFile))) {
 			syslog(LOG_WARNING, $logFile . ' exite déjà. Ce rappel de rendez par email ne sera pas re-émis.');

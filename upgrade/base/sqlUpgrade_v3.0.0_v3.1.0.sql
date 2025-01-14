@@ -6,9 +6,9 @@ ALTER TABLE `people` CHANGE `type` `type` enum('patient','pro','externe','servic
 
 UPDATE `people` SET `name`=`id` WHERE `name` is null and `pass`!='';
 INSERT IGNORE INTO `people` (`name`, `type`, `rank`, `module`, `pass`, `registerDate`, `fromID`, `lastLogIP`, `lastLogDate`, `lastLogFingerprint`) VALUES
-('medshake', 'service', '', 'base', '', '2018-01-01 00:00:00', '1', '', '2018-01-01 00:00:00', ''),
+('medkonnect', 'service', '', 'base', '', '2018-01-01 00:00:00', '1', '', '2018-01-01 00:00:00', ''),
 ('clicRDV', 'service', '', 'base', '', '2018-01-01 00:00:00', '1', '', '2018-01-01 00:00:00', '');
-SET @medshakeid=(SELECT `id` from `people` WHERE `name`='medshake');
+SET @medkonnectid=(SELECT `id` from `people` WHERE `name`='medkonnect');
 
 -- agenda
 ALTER TABLE `agenda` ADD `externid` int UNSIGNED DEFAULT NULL AFTER `id`;
@@ -21,7 +21,7 @@ INSERT IGNORE INTO `data_cat` (`groupe`, `name`, `label`, `description`, `type`,
 ('user', 'clicRDV', 'clicRDV', 'Paramètres pour clicRDV', 'base', 1, '2018-01-01 00:00:00'),
 ('ordo', 'OrdoItems', 'Ordo', 'items d\'une ordonnance', 'base', 1, '2018-01-01 00:00:00');
 
-UPDATE `data_cat` SET `fromID`=@medshakeid WHERE `fromID` in ('0','1');
+UPDATE `data_cat` SET `fromID`=@medkonnectid WHERE `fromID` in ('0','1');
 UPDATE `data_cat` SET `name`='porteursOrdo' WHERE `name`='poteursOrdo';
 
 -- data_types
@@ -67,10 +67,10 @@ SET @cat=(SELECT `id` FROM `data_cat` WHERE `name`='catParamsUsersAdmin');
 INSERT IGNORE INTO `data_types` (`groupe`, `name`, `placeholder`, `label`, `description`, `validationRules`, `validationErrorMsg`, `formType`, `formValues`, `module`, `cat`, `fromID`, `creationDate`, `durationLife`, `displayOrder`) VALUES
 ('user', 'administratifComptaPeutVoirRecettesDe', '', 'administratifComptaPeutVoirRecettesDe', 'permet à l\'utilisateur sélectionné de voir les recettes des praticiens choisis', '', '', 'text', '', 'base', @cat, 1, '2018-01-01 00:00:00', 3600, 1);
 
-UPDATE `data_types` SET `fromID`=@medshakeid WHERE `fromID` in ('0','1');
+UPDATE `data_types` SET `fromID`=@medkonnectid WHERE `fromID` in ('0','1');
 
 -- forms_cat
-UPDATE `forms_cat` SET `fromID`=@medshakeid WHERE `fromID` in ('0','1');
+UPDATE `forms_cat` SET `fromID`=@medkonnectid WHERE `fromID` in ('0','1');
 
 -- forms
 ALTER TABLE `forms` ADD UNIQUE(`internalName`);
@@ -79,7 +79,7 @@ DELETE FROM `forms` WHERE internalName='baseReglementSimple';
 
 INSERT INTO `forms` (`module`,`internalName`, `name`, `description`, `dataset`, `groupe`, `formMethod`, `formAction`, `cat`, `type`, `yamlStructure`, `yamlStructureDefaut`, `printModel`) VALUES
 ('base','baseFirstLogin', 'Premier utilisateur', 'Création premier utilisateur', 'form_basic_types', 'admin', 'post', '/login/logInFirstDo/', 5, 'public', 'structure:\r\n row1:\r\n  col1: \r\n    head: "Mot de passe de l\'utilisateur 1"\r\n    size: 3\r\n    bloc:\r\n      - userid,readonly \r\n      - password,required\r\n      - verifPassword,required\r\n      - submit', 'structure:\r\n row1:\r\n  col1: \r\n    head: "Mot de passe de l\'utilisateur 1"\r\n    size: 3\r\n    bloc: \r\n      - userid,readonly \r\n      - password,required\r\n      - verifPassword,required\r\n      - submit', NULL),
-('base', 'baseUserParametersPassword', 'Paramètres utilisateur MedShakeEHR', 'Paramètres utilisateur MedShakeEHR', 'form_basic_types', 'admin', 'post', '/user/actions/userParametersPassword/', 5, 'public', 'structure:\r\n row1:\r\n  col1: \r\n    head: "Paramètres MedShakeEHR"\r\n    size: 3\r\n    bloc:\r\n      - currentPassword,required                            		#6    Mot de passe actuel\n\n      - password,required                          		#2    Mot de passe\n      - verifPassword,required                     		#5    Confirmation du mot de passe', 'structure:\r\n row1:\r\n  col1: \r\n    head: "Paramètres MedShakeEHR"\r\n    size: 3\r\n    bloc:\r\n      - currentPassword,required                            		#6    Mot de passe actuel\n\n      - password,required                          		#2    Mot de passe\n      - verifPassword,required                     		#5    Confirmation du mot de passe', NULL);
+('base', 'baseUserParametersPassword', 'Paramètres utilisateur MedKonnectEHR', 'Paramètres utilisateur MedKonnectEHR', 'form_basic_types', 'admin', 'post', '/user/actions/userParametersPassword/', 5, 'public', 'structure:\r\n row1:\r\n  col1: \r\n    head: "Paramètres MedKonnectEHR"\r\n    size: 3\r\n    bloc:\r\n      - currentPassword,required                            		#6    Mot de passe actuel\n\n      - password,required                          		#2    Mot de passe\n      - verifPassword,required                     		#5    Confirmation du mot de passe', 'structure:\r\n row1:\r\n  col1: \r\n    head: "Paramètres MedKonnectEHR"\r\n    size: 3\r\n    bloc:\r\n      - currentPassword,required                            		#6    Mot de passe actuel\n\n      - password,required                          		#2    Mot de passe\n      - verifPassword,required                     		#5    Confirmation du mot de passe', NULL);
 
 INSERT IGNORE INTO `forms_cat` (`name`, `label`, `description`, `type`, `fromID`, `creationDate`) VALUES
 ('formATCD', 'Formulaires d\'antécédents', 'Formulaires pour construire les antécédents', 'user', 1, '2018-01-01 00:00:00'),
@@ -125,7 +125,7 @@ INSERT IGNORE INTO  `form_basic_types` (`name`, `placeholder`, `label`, `descrip
 
 
 UPDATE `form_basic_types` SET `name`='username', `description`='identifiant utilisateur', `validationRules`='required', `validationErrorMsg`='L\'identifiant utilisateur est manquant' WHERE `name`='userid';
-UPDATE `form_basic_types` SET `fromID`=@medshakeid WHERE `fromID` in ('0','1');
+UPDATE `form_basic_types` SET `fromID`=@medkonnectid WHERE `fromID` in ('0','1');
 
 -- objets_data
 ALTER TABLE `objets_data` ADD `deletedByID` int(11) DEFAULT NULL after `deleted`;

@@ -9,7 +9,7 @@ if(class_exists('msApicrypt2')) {
   $content=array(
     "version"=>"v1.0.0",
     "nom"=>'Apicrypt 2',
-    "auteurs"=>['Bertrand Boutillier'=>'https://www.medshake.net/membre/1/'],
+    "auteurs"=>['Bertrand Boutillier'=>'https://www.medkonnect.net/membre/1/'],
     "licence"=>'Toute reproduction et diffusion interdite - ©EIRL Bertrand Boutillier',
     "description"=>"Plugin pour l'utilisation d'Apicrypt 2",
     "documentation"=>'https://www.logiciel-cabinet-medical.fr/',
@@ -27,7 +27,7 @@ if(is_dir(msTools::setDirectoryLastSlash($p['config']['webDirectory']).'modulesE
   $content=array(
     "version"=>"v1.0.0",
     "nom"=>'VitalOnline',
-    "auteurs"=>['Bertrand Boutillier'=>'https://www.medshake.net/membre/1/'],
+    "auteurs"=>['Bertrand Boutillier'=>'https://www.medkonnect.net/membre/1/'],
     "licence"=>'Toute reproduction et diffusion interdite - ©EIRL Bertrand Boutillier',
     "description"=>"Plugin pour l'utilisation de VitalOnline",
     "documentation"=>'https://www.logiciel-cabinet-medical.fr/',

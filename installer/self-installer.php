@@ -1,23 +1,23 @@
 <?php
 /*
- * This file is part of MedShakeEHR.
+ * This file is part of MedKonnectEHR.
  *
  * Copyright (c) 2017
  * fr33z00 <https://www.github.com/fr33z00>
- * http://www.medshake.net
+ * http://www.medkonnect.net
  *
- * MedShakeEHR is free software: you can redistribute it and/or modify
+ * MedKonnectEHR is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * any later version.
  *
- * MedShakeEHR is distributed in the hope that it will be useful,
+ * MedKonnectEHR is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MedShakeEHR.  If not, see <http://www.gnu.org/licenses/>.
+ * along with MedKonnectEHR.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	if (!is_dir($_POST['destination']) or !is_writable($_POST['destination'])) {
 		$template = 'erreur-droits';
 	} else {
-		file_put_contents("MEDSHAKEEHRPATH", $_POST['destination']);
+		file_put_contents("MEDKONNECTEHRPATH", $_POST['destination']);
 		$dossier .= ($dossier[strlen($dossier) - 1]) != '/' ? '/' : '';
 
 		if (!isset($_POST['v'])) {
@@ -101,15 +101,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$releaseTagName = $_POST['v'];
 		}
 		//téléchargement de la dernière release
-		file_put_contents("/tmp/medshake.zip", fopen('https://github.com/medshake/MedShakeEHR-base/archive/' . $releaseTagName . '.zip', 'r'));
+		file_put_contents("/tmp/medkonnect.zip", fopen('https://github.com/medshake/MedShakeEHR-base/archive/' . $releaseTagName . '.zip', 'r'));
 		$zip = new ZipArchive;
-		if ($zip->open("/tmp/medshake.zip")) {
+		if ($zip->open("/tmp/medkonnect.zip")) {
 			$zip->extractTo('/tmp/');
-			unlink("/tmp/medshake.zip");
+			unlink("/tmp/medkonnect.zip");
 			//deplacement du contenu de public_html
-			$dossierdezip = '/tmp/MedShakeEHR-base-' . $releaseTagName;
+			$dossierdezip = '/tmp/MedKonnectEHR-base-' . $releaseTagName;
 			if (!is_dir($dossierdezip)) {
-				$dossierdezip = '/tmp/MedShakeEHR-base-' . str_replace('v', '', $releaseTagName);
+				$dossierdezip = '/tmp/MedKonnectEHR-base-' . str_replace('v', '', $releaseTagName);
 			}
 			foreach (scandir($dossierdezip . '/public_html') as $f) {
 				if ($f != '.' and $f != '..') {
@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			});
 			if (empty($errormatches)) {
 				unlink($dossierweb . '/self-installer.php');
-				$htaccess = "SetEnv MEDSHAKEEHRPATH " . $dossier . "\n";
+				$htaccess = "SetEnv MEDKONNECTEHRPATH " . $dossier . "\n";
 				$htaccess .= file_get_contents($dossierweb . "/.htaccess");
 				file_put_contents($dossierweb . "/.htaccess", $htaccess);
 				//lancement de la partie configuration
@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				$template = 'erreur-inconnue';
 			}
 		} else {
-			$ret = "Impossible de dezipper le fichier /tmp/medshake.zip";
+			$ret = "Impossible de dezipper le fichier /tmp/medkonnect.zip";
 			$template = 'erreur-inconnue';
 		}
 	}
@@ -170,7 +170,7 @@ if ($template != '') : ?>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
 		<title>
-			MedShakeEHR : Pre-installation</title>
+			MedKonnectEHR : Pre-installation</title>
 		<meta name="Description" content="" />
 	</head>
 	<style>
@@ -198,10 +198,10 @@ if ($template != '') : ?>
 
 		.svganim {
 			display: block !important;
-			animation: shake 10s normal 1s infinite
+			animation: konnect 10s normal 1s infinite
 		}
 
-		@keyframes shake {
+		@keyframes konnect {
 			from {
 				margin-left: 0
 			}
@@ -351,7 +351,7 @@ if ($template != '') : ?>
 
 	<body>
 		<nav class="navbar navbar-dark bg-dark mb-3">
-			<a class="navbar-brand" href="#">MedShakeEHR</a>
+			<a class="navbar-brand" href="#">MedKonnect</a>
 		</nav>
 
 		<div class="container-fluid" role="main">
@@ -359,7 +359,7 @@ if ($template != '') : ?>
 			<?php
 			if ($template == 'erreurs-prerequis') :
 			?>
-				<h1>Installateur de MedShakeEHR</h1>
+				<h1>Installateur de MedKonnectEHR</h1>
 				<div class="alert alert-danger" role="alert">
 					<h4 class="alert-heading">Alerte prérequis !</h4>
 					<p>
@@ -374,12 +374,12 @@ if ($template != '') : ?>
 			<?php
 			elseif ($template == 'bienvenue') :
 			?>
-				<h1>Installateur de MedShakeEHR</h1>
+				<h1>Installateur de MedKonnectEHR</h1>
 				<div id="inst">
 					<p>Nous allons commencer la procédure d'installation. Cela peut prendre plusieurs minutes.<br>
 						<strong>Ne fermez pas cette page, et ne la rechargez pas non plus!</strong>
 					</p>
-					<p>Définissez ci-dessous le dossier où MedShakeEHR doit être installé.<br>
+					<p>Définissez ci-dessous le dossier où MedKonnectEHR doit être installé.<br>
 						<strong> - Cet emplacement ne doit pas être accessible via le web</strong><br>
 						<strong> - L'utilisateur www-data doit avoir les droits d'écriture sur cet emplacement, ainsi que sur le dossier <code><?= getcwd() ?></code>.
 					</p>

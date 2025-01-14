@@ -2,8 +2,8 @@
 
 DELIMITER $$
 
-DROP PROCEDURE IF EXISTS `CreerIndexMsEHR` $$
-CREATE PROCEDURE `CreerIndexMsEHR`
+DROP PROCEDURE IF EXISTS `CreerIndexMkEHR` $$
+CREATE PROCEDURE `CreerIndexMkEHR`
 (
     given_type     VARCHAR(64),
     given_table    VARCHAR(64),
@@ -36,12 +36,12 @@ END $$
 DELIMITER ;
 
 -- créer index sur le name de forms_cat si besoin
-call CreerIndexMsEHR('unique','forms_cat','name','name');
+call CreerIndexMkEHR('unique','forms_cat','name','name');
 
 -- créer index sur name de prescriptions_cat si besoin
-call CreerIndexMsEHR('unique','prescriptions_cat','name','name');
+call CreerIndexMkEHR('unique','prescriptions_cat','name','name');
 
-DROP PROCEDURE IF EXISTS `CreerIndexMsEHR`;
+DROP PROCEDURE IF EXISTS `CreerIndexMkEHR`;
 
 -- Retrait des placeholders
 update data_types set placeholder="", description="poids du patient en kg" where name="poids";

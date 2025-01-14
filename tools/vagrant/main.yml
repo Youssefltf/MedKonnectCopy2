@@ -1,5 +1,5 @@
 ---
-- hosts: msehr
+- hosts: mkehr
   become: yes
   vars_files: 
     - secrets.yml
@@ -11,7 +11,7 @@
     
     - name: Install packages
       apt: 
-        name: "{{ msehrPackages }}"
+        name: "{{ mkehrPackages }}"
         update_cache: yes 
         state: latest
 
@@ -48,7 +48,7 @@
         directory_mode: yes
       when: stage == "testing"
 
-    - name: Add good permissions and ownership to medshakeehr folder
+    - name: Add good permissions and ownership to medkonnectehr folder
       ansible.builtin.file:
         path: /opt/ehr
         state: directory
@@ -57,20 +57,20 @@
         group: "{{ user }}"
         mode: '0755'
 
-    - name:  check if MedShakeEHR exist
+    - name:  check if MedKonnectEHR exist
       stat:
         path: opt/ehr/public_html
-      register: msehr 
+      register: mkehr 
 
-    - name: Creating MEDSHAKEEHRPATH file
+    - name: Creating MEDKONNECTEHRPATH file
       copy:
-        dest: /opt/ehr/public_html/MEDSHAKEEHRPATH
+        dest: /opt/ehr/public_html/MEDKONNECTEHRPATH
         content: |
           /opt/ehr
         owner: www-data
         group: "{{user}}"
         mode: '0755'
-      when: not msehr.stat.exists 
+      when: not mkehr.stat.exists 
 
     - name: Composer upgrade on /ehr
       shell: cd /opt/ehr && composer upgrade --no-cache   
@@ -132,7 +132,7 @@
       
     - name: Setup vhosts configuration.
       template:
-        src: templates/msehr.vhost.conf.j2
+        src: templates/mkehr.vhost.conf.j2
         dest: "/etc/apache2/sites-available/{{ domain }}.conf"
         owner: root
         group: root
@@ -204,10 +204,10 @@
         password: "{{ sqlUserPassword }}"
         login_user: root
         login_password: "{{ sqlRootPassword }}"
-        priv: 'medshakeehr.*:ALL,GRANT'
+        priv: 'medkonnectehr.*:ALL,GRANT'
         state: present    
 
-    - name: Ensure MedShakeEHR database is present.
+    - name: Ensure MedKonnectEHR database is present.
       mysql_db:
         name: "{{ sqlDbName }}"
         login_user: "{{ sqlUserAccount }}"
@@ -234,12 +234,12 @@
         path: /opt/ehr/config/config.yml
       register: ymlconfig 
       
-    - name: Execute MedShakeEHR cli installation script
+    - name: Execute MedKonnectEHR cli installation script
       shell: "/usr/bin/php /opt/ehr/public_html/install.php -s localhost -N -d {{ sqlDbName }} -u {{ sqlUserAccount }} -p \"{{ sqlUserPassword }}\" -r https -D {{ domain }}"
       become: true
       become_user: www-data
       environment:
-        MEDSHAKEEHRPATH: /opt/ehr
+        MEDKONNECTEHRPATH: /opt/ehr
       when: not ymlconfig.stat.exists
 
   handlers:

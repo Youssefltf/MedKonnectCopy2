@@ -2,7 +2,7 @@
 
 // Check if the required argument is provided
 if ($argc < 2) {
-    echo "Usage: php msehr.upgrade.php <repo>\n\n base, chiro, gyneco, general, thermal, mpr, osteo\n";
+    echo "Usage: php mkehr.upgrade.php <repo>\n\n base, chiro, gyneco, general, thermal, mpr, osteo\n";
     exit(1);
 }
 
