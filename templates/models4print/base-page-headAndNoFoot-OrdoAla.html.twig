@@ -88,11 +88,13 @@
 
 			<div id="header">
 					Docteur<br>
-                <span class="gras" style="font-size : 16pt;">{{ tag.AuteurInitial_identiteUsuelleTitre	}}</span><br>
-				{{ tag.AuteurInitial_job }}<br><br>
+                <span class="gras" style="font-size : 16pt;">{{ tag.AuteurInitial_identiteUsuelle }}</span><br>
+				{{ tag.AuteurInitial_titre }}<br><br>
 				<div class="t8" style="position : fixed; left : 0; top : -60pt; display : inline-block; vertical-align : bottom; margin : 0; padding : 0">
+					<br> 
+					{{ tag.AuteurInitial_adresseProLigne1 }} 
 					<br>
-					{{ tag.AuteurInitial_adresseProLigne1 }} - {{ tag.AuteurInitial_adresseProLigne2 }}
+					{{ tag.AuteurInitial_adresseProLigne2 }} 
 					<br>
 					Tél: 73 486 571
 				</div>
