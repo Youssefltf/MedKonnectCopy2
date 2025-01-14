@@ -41,26 +41,14 @@
 				right: 0;
 				height: 100pt;
 				margin-bottom: 0;
-				border-bottom: 1pt solid #777;
-			}
-			#footer {
-				position: fixed;
-				left: 0;
-				bottom: -60pt;
-				right: 0;
-				height: 100pt;
-				font-size: 8pt;
-				padding-top: 10pt;
-				border-top: 1pt solid #777;
+				border-bottom: medium double #777; /* Reduced border thickness */
 			}
 
 			#footer p {
 				position: fixed;
-        width : 200pt;
-        text-align: center;
+				width : 200pt;
+				text-align: center;
 			}
-
-
 
 			.gras {
 				font-weight: bold;
@@ -85,21 +73,21 @@
 			}
 		</style>
 		<body>
-
-			<div id="header">
-					Docteur<br>
-                <span class="gras" style="font-size : 16pt;">{{ tag.AuteurInitial_identiteUsuelle }}</span><br>
+			<div id="header" style="position : fixed; left : 0; display : inline-block; width : 35%; text-align : center; padding : 0; margin : 0;">
+				Docteur<br>
+				<span class="gras" style="font-size : 16pt;">{{ tag.AuteurInitial_identiteUsuelle }}</span><br>
 				{{ tag.AuteurInitial_titre }}<br><br>
-				<div class="t8" style="position : fixed; left : 0; top : -60pt; display : inline-block; vertical-align : bottom; margin : 0; padding : 0">
+
+				<div class="t8" style="position : fixed; left : 0; top : -60pt; display : inline-block; width : 35%; vertical-align : bottom; text-align : center; padding : 0; margin : 0;">
 					<br> 
-					{{ tag.AuteurInitial_adresseProLigne1 }} 
+					{{ tag.AuteurInitial_adresseProLigne1 }} - {{ tag.AuteurInitial_adresseProLigne2 }} 
 					<br>
-					{{ tag.AuteurInitial_adresseProLigne2 }} 
-					<br>
+					<br> 
 					Tél: 73 486 571
 				</div>
+			</div>
 				
-				<div class="t8" style="position : fixed; right : 0; top : -60pt; display : inline-block; width : 35%; vertical-align : bottom; text-align : right;padding : 0; margin : 0;">
+				<div class="t8" style="position : fixed; right : 0; top : -60pt; display : inline-block; width : 35%; vertical-align : bottom; text-align : center; padding : 0; margin : 0;">
 					<br>
 					{{ tag.AuteurInitial_adresseProLigne1 }} - {{ tag.AuteurInitial_adresseProLigne2 }}
 					<br>
@@ -109,4 +97,3 @@
 
 			<!-- stop head -->
 			<div class="t9">
-
