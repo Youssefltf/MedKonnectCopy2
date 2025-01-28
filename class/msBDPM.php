@@ -49,8 +49,11 @@ class msBDPM
 	public function get_the_spe_txt($libprod, $monovir)
 	{
 
+		/**
+		 * Récupération des medicaments tunisiens
+		 */
 		if ($monovir == '0') {
-			return  msSQL::sql2tab("SELECT
+			return msSQL::sql2tab("SELECT
 			codeSPE as sp_code_sq_pk,
 			etatCommercialisation as statut_lab,
 			SUBSTRING_INDEX(denomination, ', ', 1) as sp_nom,
@@ -61,7 +64,7 @@ class msBDPM
 			'' as sp_catc_code_fk,
 			'' as sp_cipucd,
 			'' as sp_cipucd13
-			from bdpm_specialitesVirtuelles
+			from bdpm_specialitesVirtuelles_tn
 			where monovir = '0' and denomination like :libprod
 			order by denomination
 			limit 150
@@ -84,7 +87,7 @@ class msBDPM
 			limit 150
 		", ['libprod' => $libprod]);
 		} elseif ($monovir == '3') {
-			return  msSQL::sql2tab("SELECT
+			return msSQL::sql2tab("SELECT
 			codeSPE as sp_code_sq_pk,
 			etatCommercialisation as statut_lab,
 			SUBSTRING_INDEX(denomination, ', ', 1) as sp_nom,
@@ -95,7 +98,7 @@ class msBDPM
 			'' as sp_catc_code_fk,
 			'' as sp_cipucd,
 			'' as sp_cipucd13
-			from bdpm_specialitesVirtuelles
+			from bdpm_specialitesVirtuelles_tn
 			where denomination like :libprod
 			order by denomination
 			limit 150
@@ -414,8 +417,10 @@ class msBDPM
 			where p.codeCIP13 = :codeid
 		", ['codeid' => $codeid]);
 		} else {
-
-			return msSQL::sql2tab("SELECT
+			/**
+			 * Récupération des medicaments tunisiens
+			 */
+			/*return msSQL::sql2tab("SELECT
 			p.codeCIP13 as pre_code_pk,
 			p.codeCIS as pre_sp_code_fk,
 			p.libelle as pre_adm,
@@ -430,7 +435,25 @@ class msBDPM
 			from bdpm_presentationsVirtuelles as p
 			left join bdpm_specialites as s on s.codeCIS = p.codeCIS
 			where p.codeSPE = :codeid
-		", ['codeid' => $codeid]);
+		", ['codeid' => $codeid]);*/
+			return msSQL::sql2tab("
+				SELECT
+					s.codeCIS AS pre_code_pk,
+					s.codeCIS AS pre_sp_code_fk,
+					s.denomination AS pre_adm,
+					CASE
+						WHEN s.statutAdminAMM = 'Autorisation active' AND s.etatCommercialisation = 'Commercialisée' THEN 'OUI'
+						ELSE 'S'
+					END AS pre_etat_commer,
+					s.dateAMM AS pre_datecommer,
+					s.codeCIS AS pre_ean_ref,
+					s.formePharma AS pre_nat,
+					'Non' AS reservhop
+				FROM
+					bdpm_specialites_tn AS s
+				WHERE
+					s.codeCIS = :codeid
+			", ['codeid' => $codeid]);
 		}
 	}
 
