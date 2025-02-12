@@ -67,6 +67,9 @@
           <li class="nav-item" style="display: none;">
             <a id="posologiesmedicTab" class="nav-link" href="#posologiesmedic" aria-controls="posologiesmedic" aria-selected="false" role="tab" data-toggle="tab">Posologies</a>
           </li>
+          <li class="nav-item" style="display: none;">
+            <a id="ajoutNouveauMedicTab" class="nav-link" href="#nouveaumedic" aria-controls="nouveaumedic" aria-selected="false" role="tab" data-toggle="tab">Nouveau médicament</a>
+          </li>
         </ul>
         <div class="tab-content">
 
@@ -249,6 +252,66 @@
             </form>
 
           </div>
+
+
+          {# Début Onglet Nouveau Medicament #}
+          <div role="tabpanel" class="tab-pane" id="nouveaumedic">
+
+            <form>
+
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label class="control-label" for="txtNomMedicament">Dénomination
+                  </label>
+                  <input type="text" required id="txtDenomination" class="form-control form-control-sm"
+                         autocomplete="off"/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+{#                  <div class="form-group">#}
+{#                    <select id='uniteUtilisee' class="custom-select custom-select-sm">#}
+{#                      <option>1</option>#}
+{#                      <option>2</option>#}
+{#                      <option>3</option>#}
+{#                      <option>4</option>#}
+{#                      <option>5</option>#}
+{#                    </select>#}
+{#                  </div>#}
+                  <div class="form-group">
+                    <label class="control-label" for="selectVoieUtilisee">Voie d'administration
+                    </label>
+                    <select id="selectVoieUtilisee" required class="custom-select custom-select-sm">
+                      <option value="">Veuillez choisir la voie d'administration</option>
+                      <option value="intraveineuse">intraveineuse</option>
+                      <option value="orale">orale</option>
+                      <option value="pulmonaire">pulmonaire</option>
+                      <option value="auriculaire">auriculaire</option>
+                      <option value="intramusculaire">intramusculaire</option>
+                      <option value="cutanée">cutanée</option>
+                      <option value="ophtalmique">ophtalmique</option>
+                      <option value="rectale">rectale</option>
+                      <option value="transdermique">transdermique</option>
+                      <option value="vaginale">vaginale</option>
+                      <option value="nasale">nasale</option>
+                      <option value="autre spécifique">autre spécifique</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-center">
+                <div class="col-2">
+                  <button type="button" class="btn btn-primary saveMedicAndGoToPrescription"><i class="fas fa-plus"></i> Ajouter</button>
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+          {# Fin Onglet Nouveau Medicament #}
+
 
           {# Posologies #}
           <div role="tabpanel" class="tab-pane" id="posologiesmedic"></div>

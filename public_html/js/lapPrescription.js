@@ -286,6 +286,24 @@ $(document).ready(function() {
     lapInstallPrescription(tab);
   });
 
+	// activer l'onglet d'ajout de nouveau medicament
+	$('#modalRecherche').on("click", ".sendToNewMedicForm", function(e) {
+    //montre l'onglet et le panel d'ajout de nouveau medicament
+    $('#ajoutNouveauMedicTab').parent('li').show();
+    $('#ajoutNouveauMedicTab').tab('show');
+    $('#txtNomMedicament').focus();
+    console.log("Début Ajout d'un nouveau médicament : OK");
+	});
+
+  // sauvegarder un nouveau medicament dans la bdd et aller à l'onglet de prescription
+  $('#modalRecherche').on("click", ".saveMedicAndGoToPrescription", function(e) {
+    console.log("### test");
+    //montre l'onglet et le panel de prescription
+    $('#prescriremedicTab').parent('li').show();
+    $('#prescriremedicTab').tab('show');
+    $('#lapFrappePrescription').focus();
+  });
+
   // focus sur le champ de recherche
   $('#modalRecherche').on('shown.bs.modal', function(event) {
     $('#txtRechercheMedic').focus();
