@@ -68,7 +68,16 @@
               <th>Code</th>
               <th>Label</th>
               {% if page.secteurs[k] != '' %}
-                <th class="text-right">Tarif&nbsp;SS</th>
+
+
+                  <!-- Début Tarif "SS" caché -->
+
+                    {# <th class="text-right">Tarif&nbsp;SS</th>#}
+
+                  <!-- Fin Tarif "SS" caché -->
+
+
+                <th class="text-right">Tarif</th>
                 <th class="text-right">Dépassement</th>
                 <th class="text-right">Total</th>
               {% else %}

@@ -52,7 +52,7 @@
 
     {# plages de l'agenda #}
     <div role="tabpanel" class="tab-pane active" id="pa">
-      <h3 class="mb-3">Paramétrage des jours et horaires dans l'agenda MedKonnectEHR</h3>
+      <h3 class="mb-3">Paramétrage des jours et horaires dans l'agenda {{ config.designAppName }}</h3>
       <form id="formName_ConfAgenda" class="ajaxForm" method="post" action="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/user/ajax/userParametersAgenda/">
         <table class="table" style="width:340px">
           <tr>

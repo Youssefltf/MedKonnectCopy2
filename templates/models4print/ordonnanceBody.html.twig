@@ -31,9 +31,10 @@
 {% set ma = page.courrier.medoc.ald %}
 
 
-<p style="text-align : right;">{{ tag.AuteurInitial_villeAdressePro }}, le {{ tag.date|date("d/m/Y") }}</p>
+<p style="text-align : right;">{{ tag.AuteurInitial_city }}, le {{ tag.date|date("d/m/Y") }}</p>
 
-<h2 style="text-align : center; margin-bottom : 30pt;">{{ tag.identiteCompleteTitreLongDdn }} - {{ tag.age }}</h2>
+{#<h2 style="text-align : center; margin-bottom : 30pt;">{{ tag.identiteCompleteTitreLongDdn }} - {{ tag.age }}</h2>#}
+<h2 style="text-align : center; margin-bottom : 30pt;">{{ tag.identiteCompleteTitreLong }}
 
 {% if tag.ordoImpressionNbLignes != 'n' %}
 <p style="text-align : right;">{{ ms|length }} ligne{% if ms|length > 1 %}s{% endif %} de prescriptions</p>
@@ -46,4 +47,4 @@
 
 <br><br><br><br>
 
-<p style="text-align:right">Docteur {{ tag.AuteurInitial_identiteUsuelle }} </p>
+<p style="text-align:right">Docteur {{ tag.AuteurInitial_identiteUsuelle }}</p>

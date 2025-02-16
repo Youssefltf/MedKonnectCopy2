@@ -765,7 +765,7 @@ function makeLigneOrdo(data, mode) {
       }
     }
     retour += '      </div>';
-    retour += '      <div>' + data.medics[0].posoHumanCompleteTab.join('<br>') + '</div>';
+    retour += '      <div>' + data.medics[0]?.posoHumanCompleteTab?.join('<br>') + '</div>';
     if (data.ligneData.consignesPrescription) {
       retour += '      <div class="small">' + nl2br(data.ligneData.consignesPrescription) + '</div>';
     }

@@ -34,4 +34,5 @@ $lappres->setSpeThe($_POST['speThe']);
 $lappres->setPresThe($_POST['presThe']);
 $lappres->setTauxRbt($_POST['tauxrbt']);
 $lappres->setPrixUcd($_POST['prixucd']);
+$lappres->setNomDC($_POST['nomDC']);
 echo json_encode($lappres->lapInstallPrescription());

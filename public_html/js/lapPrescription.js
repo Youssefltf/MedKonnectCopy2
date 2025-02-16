@@ -272,11 +272,16 @@ $(document).ready(function() {
 
   // envoyer médicament à la zone de prescription
   $('#modalRecherche').on("click", ".sendToPrescription", function(e) {
-    var tab = {
+	  var medicamentName = $(this).contents().filter(function () {
+		  return this.nodeType === Node.TEXT_NODE && $.trim(this.nodeValue) !== "";
+	  }).text().trim();
+
+      var tab = {
       speThe: $(this).parent('tr').attr('data-speThe'),
       presThe: $(this).parent('tr').attr('data-presThe'),
       tauxrbt: $(this).parent('tr').attr('data-tauxrbt'),
       prixucd: $(this).parent('tr').attr('data_prixucd'),
+	  nomDC: medicamentName
     };
     lapInstallPrescription(tab);
   });
@@ -430,6 +435,8 @@ $(document).ready(function() {
 function catchCurrentPrescriptionData() {
   //ajouter les datas du form à l'ordo.
   medicData['prescriptionMachinePoso'] = $('#lapFrappePrescription').val();
+  medicData['nomUtileFinal'] = $("#prescriptionHumanMedicName").text();
+
   if ($('#prescriptionNpsCheckbox').is(':checked')) medicData['isNPS'] = "true";
   else medicData['isNPS'] = "false";
   medicData['motifNPS'] = $('#prescriptionNpsMotif').val();
@@ -704,7 +711,8 @@ function lapInstallPrescription(tab) {
       presThe: tab.presThe,
       tauxrbt: tab.tauxrbt,
       prixucd: tab.prixucd,
-      ligneCouranteIndex: ligneCouranteIndex
+      ligneCouranteIndex: ligneCouranteIndex,
+	  nomDC: tab.nomDC
     },
     dataType: "json",
     success: function(data) {
@@ -740,7 +748,7 @@ function lapInstallPrescription(tab) {
       }
 
       // placer le nom de la spé
-      $('#prescriptionHumanMedicName').html(medicData['nomUtileFinal']);
+      $('#prescriptionHumanMedicName').html(tab.nomDC);
 
 			// lien vers monographie externe (si BDPM)
 			if ($('a.voirPosologiesExterne').length) {
@@ -974,7 +982,7 @@ function matchAndGo() {
         medicData['totalUnitesPrescrites'] = data['totalUnitesPrescrites'];
 
         // actions visuelle
-        $('#prescriptionHumanMedicName').html(medicData.nomUtileFinal);
+        // $('#prescriptionHumanMedicName').html(medicData.nomUtileFinal);
         if (medicData.motifNPS) insertMotif = ' - ' + medicData.motifNPS;
         else insertMotif = '';
         if (medicData.isNPS == 'true') $('#prescriptionHumanMedicName').append(' [non substituable' + insertMotif + ']');
