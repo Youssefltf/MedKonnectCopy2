@@ -208,31 +208,32 @@ function determineVoieAdmin($formePharma, $denomination)
 			"comprimé à croquer", "poudre pour solution orale", "granules effervescents",
 			"poudre orale", "capsule molle", "ampoules buvables", "comprimé pour suspension buvable",
 			"pastilles", "comprime enrobé", "gouttes buvables", "granulés à libération prolongée",
-			"granules"
+			"granules", "comprime dispersible"
 		],
 		"intraveineuse" => [
 			"solution pour perfusion", "injection iv", "intraveineuse", "perfus",
 			"solution injectable pour perfusion", "poudre pour solution pour perfusion",
 			"poudre lyophilisée à diluer pour perfusion", "emulsion injectable pour perfusion",
-			"pdre p.prep.injectable", "poudre pour suspension injectable"
+			"pdre p.prep.injectable", "poudre pour suspension injectable",
+			"emulsion injectable"
 		],
 		"intramusculaire" => [
 			"solution injectable", "ampoule im", "intramusculaire",
 			"solution injectable i.m et buvable", "poudre pour suspension injectable",
-			"suspension injectable", "émulsion injectable"
+			"suspension injectable"
 		],
 		"sous-cutanée" => [
 			"injection sc", "seringue préremplie sc"
 		],
 		"cutanée" => [
-			"crème dermique", "pommade dermique", "gel dermique", "lotion",
+			"creme dermique", "pommade dermique", "gel dermique", "lotion",
 			"shampooing", "poudre à usage externe", "baume", "liniment",
-			"gel moussant", "spray solution", "lait dermique", "patch", "émulsion",
-			"solution externe", "crème dermique"
+			"gel moussant", "spray solution", "lait dermique", "patch",
+			"solution externe", "emulsion"
 		],
 		"ophtalmique" => [
 			"collyre", "collyre monodose", "pommade ophtalmique",
-			"solution ophtalmique", "gel ophtalmique"
+			"solution ophtalmique", "gel ophtalmique", "solution intra-oculaire", "préparation viscoélastique"
 		],
 		"nasale" => [
 			"spray nasal", "solution pour pulvérisation nasale", "solution nasale",
@@ -260,10 +261,9 @@ function determineVoieAdmin($formePharma, $denomination)
 		],
 		"autre spécifique" => [
 			"implant", "perfusion intrathécale", "intra-articulaire",
-			"suspension pour administration intravesicale", "solution intra-oculaire",
+			"suspension pour administration intravésicale",
 			"doses homéopathiques", "globules", "gel urétral",
-			"susp. p. instill endotrachéobronchique", "soluté pour dialyse péritonéale",
-			"préparation viscoélastique", "émulsion injectable"
+			"susp. p. instill endotrachéobronchique", "soluté pour dialyse péritonéale"
 		]
 	];
 
