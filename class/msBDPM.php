@@ -168,7 +168,7 @@ class msBDPM
 	public function get_the_voie_spe($codeid)
 	{
 		$data = [];
-		$data = msSQL::sqlUniqueChamp("SELECT voiesAdmin from bdpm_specialitesVirtuelles where codeSPE = :codeid", ['codeid' => $codeid]);
+		$data = msSQL::sqlUniqueChamp("SELECT voiesAdmin from bdpm_specialitesVirtuelles_tn where codeSPE = :codeid", ['codeid' => $codeid]);
 		$data = explode(';', $data);
 		$retour = [];
 		foreach ($data as $v) {
@@ -397,7 +397,6 @@ class msBDPM
 
 	public function get_the_presentation_v2($codeid, $typid)
 	{
-
 		if ($typid == 2 or $typid == 4) {
 
 			return msSQL::sql2tab("SELECT
