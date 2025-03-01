@@ -9,11 +9,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 try {
-	// Step 1: Connect to the database
-	$pdo = new PDO("mysql:host=localhost;dbname=medshakeehr;charset=utf8", "root", "root", [
-		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-	]);
+	// echo "Connecting to the database...\n";
+
+	// // Step 1: Connect to the database
+	// $pdo = new PDO("mysql:host=localhost;dbname=medshakeehr;charset=utf8", "root", "PASSWORD", [
+	// 	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+	// 	PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+	// ]);
 
 	// Step 2: Define the path to the CSV file
 	$csvFile = __DIR__ . '/medicaments_tunisiens/medicaments_tn_amm.csv';
@@ -69,7 +71,7 @@ try {
 	$rowNumber = 0;
 
 	// Begin transaction
-	$pdo->beginTransaction();
+	// $pdo->beginTransaction();
 
 	while (($row = fgetcsv($file)) !== false) {
 		$rowNumber++;
@@ -105,32 +107,32 @@ try {
 		// Add data to the batch
 		$batchData[] = [
 			$modifiedCodeCIS,
-			$denomination,
-			substr($forme, 0, 255),
+			str_replace("'", "''", $denomination),
+			str_replace("'", "''", substr($forme, 0, 255)),
 			$voieAdmin,
 			$dateAMM,
 			'Autorisation active',
 			'Commercialisée',
-			substr($laboratoire, 0, 500),
-			substr($dci, 0, 500)
+			str_replace("'", "''", substr($laboratoire, 0, 500)),
+			str_replace("'", "''", substr($dci, 0, 500))
 		];
 
 		// Insert batch if the batch size is reached
 		if (count($batchData) >= $batchSize) {
-			insertBatch($pdo, $batchData);
+			insertBatch(/*$pdo, */$batchData);
 			$batchData = []; // Clear batch
 		}
 
-		echo "\rProcessing row $rowNumber of $totalRows...";
+		// echo "\rProcessing row $rowNumber of $totalRows...";
 	}
 
 	// Insert remaining rows
 	if (!empty($batchData)) {
-		insertBatch($pdo, $batchData);
+		insertBatch(/*$pdo, */$batchData);
 	}
 
 	// Commit transaction
-	$pdo->commit();
+	// $pdo->commit();
 
 	// Close the CSV file
 	fclose($file);
@@ -175,7 +177,7 @@ try {
                 `bdpm_specialites_tn` `s`
         );
     ";
-	$pdo->exec($createViewSQL);
+	// $pdo->exec($createViewSQL);
 	echo "View `bdpm_specialitesVirtuelles_tn` created successfully.\n";
 
 	echo "Processing completed.\n";
@@ -186,7 +188,7 @@ try {
 	}
 } catch (PDOException $e) {
 	echo "Database error: " . $e->getMessage();
-	$pdo->rollBack(); // Roll back transaction on error
+	// $pdo->rollBack(); // Roll back transaction on error
 } catch (Exception $e) {
 	echo "Error: " . $e->getMessage();
 }
@@ -281,14 +283,18 @@ function determineVoieAdmin($formePharma, $denomination)
 /**
  * Insère les données dans la base en batch.
  */
-function insertBatch(PDO $pdo, array $batchData)
+function insertBatch(/*PDO $pdo, */array $batchData)
 {
 	$sql = "
         INSERT INTO bdpm_specialites_tn (codeCIS, denomination, formePharma, voiesAdmin, dateAMM, statutAdminAMM, etatCommercialisation, tituAMM, DCI)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ";
-	$stmt = $pdo->prepare($sql);
+	// echo "sql: '" . $sql . "'\n";
+
+	// $stmt = $pdo->prepare($sql);
 	foreach ($batchData as $data) {
-		$stmt->execute($data);
+		// $stmt->execute($data);
+		// echo "data: '" . print_r($data) . "'\n";
+		echo "INSERT INTO bdpm_specialites_tn (codeCIS, denomination, formePharma, voiesAdmin, dateAMM, statutAdminAMM, etatCommercialisation, tituAMM, DCI) VALUES ('" . $data[0] . "', '" . $data[1] . "', '" . $data[2] . "', '" . $data[3] . "', '" . $data[4] . "', '" . $data[5] . "', '" . $data[6] . "', '" . $data[7] . "', '" . $data[8] . "');\n";
 	}
 }

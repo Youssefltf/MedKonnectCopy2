@@ -502,6 +502,40 @@ CREATE TABLE IF NOT EXISTS `univtags_type` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Medicaments tunisiens --
+-- Clone the bdpm_specialites Table Structure and create bdpm_specialites_tn table
+CREATE TABLE IF NOT EXISTS bdpm_specialites_tn LIKE bdpm_specialites;
+
+-- Change the codeCIS column in the bdpm_specialites_tn table to VARCHAR,
+-- allowing it to store alphanumeric values to avoid invalid values coming from the column AMM of the csv file
+-- and add a new column DCI to store the DCI of the tn medication
+ALTER TABLE bdpm_specialites_tn
+    MODIFY codeCIS VARCHAR(50) NOT NULL,
+    ADD COLUMN DCI VARCHAR(500) NULL;
+
+CREATE OR REPLACE ALGORITHM=TEMPTABLE SQL SECURITY DEFINER VIEW `bdpm_specialitesVirtuelles_tn` AS
+(
+    SELECT
+        `s`.`codeCIS` AS `codeSPE`,
+        `s`.`codeCIS` AS `codeCIS`,
+        `s`.`denomination` AS `denomination`,
+        `s`.`formePharma` AS `formePharma`,
+        `s`.`voiesAdmin` AS `voiesAdmin`,
+        `s`.`statutAdminAMM` AS `statutAdminAMM`,
+        `s`.`typeProcedAMM` AS `typeProcedAMM`,
+        `s`.`etatCommercialisation` AS `etatCommercialisation`,
+        `s`.`dateAMM` AS `dateAMM`,
+        `s`.`statutBdm` AS `statutBDM`,
+        `s`.`numAutoEU` AS `numAutoEU`,
+        `s`.`tituAMM` AS `tituAMM`,
+        `s`.`surveillanceRenforcee` AS `surveillanceRenforcee`,
+        `s`.`DCI` AS `DCI`,
+        '0' AS `monovir`
+    FROM
+        `bdpm_specialites_tn` `s`
+);
+-- Fin: Medicaments tunisiens --
+
 -- actes_cat
 INSERT IGNORE INTO `actes_cat` (`name`, `label`, `description`, `module`, `fromID`, `creationDate`, `displayOrder`) VALUES
 ('catConsult', 'Consultations', '', 'base', 1, '2019-01-01 00:00:00', 1),
@@ -1077,7 +1111,7 @@ INSERT IGNORE INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `t
 ('lapAllergiesStrucPersoPourAnalyse', 'default', 0, '', 'LAP', 'texte', 'champs sur lesquels analyser les Allergies structurées', ''),
 ('lapAtcdStrucPersoPourAnalyse', 'default', 0, '', 'LAP', 'texte', 'champs sur lesquels analyser les atcd structurés', ''),
 ('lapPrintAllergyRisk', 'default', 0, '', 'LAP', 'true/false', 'imprimer les risques allergiques détectés', 'true'),
-('lapSearchDefaultType', 'default', 0, '', 'LAP', 'texte', 'mode de recherche par défaut des médicaments', 'dci'),
+('lapSearchDefaultType', 'default', 0, '', 'LAP', 'texte', 'mode de recherche par défaut des médicaments', 'spe'),
 ('lapSearchResultsSortBy', 'default', 0, '', 'LAP', 'texte', 'ordre préférentiel d\'affichage des médicaments', 'nom'),
 ('mailRappelActiver', 'default', 0, '', 'Rappels mail', 'true/false', 'activer / désactiver les rappels par mail', ''),
 ('mailRappelDaysBeforeRDV', 'default', 0, '', 'Rappels mail', 'nombre', 'nombre de jours avant le rendez-vous pour l\'expédition du rappel', '3'),
@@ -1094,7 +1128,7 @@ INSERT IGNORE INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `t
 ('optionGeActiverGroupes', 'default', 0, '', 'Activation services', 'true/false', 'si true, activation de la gestion des groupes praticiens', 'false'),
 ('optionGeActiverInboxApicrypt', 'default', 0, '', 'Activation services', 'true/false', 'si true, activation de la inbox Apicrypt', 'true'),
 ('optionGeActiverLapExterne', 'default', 0, '', 'Activation services', 'true/false', 'activer / désactiver l\'utilisation d\'un LAP externe', 'false'),
-('optionGeActiverLapInterne', 'default', 0, '', 'Activation services', 'true/false', 'activer / désactiver le LAP', 'false'),
+('optionGeActiverLapInterne', 'default', 0, '', 'Activation services', 'true/false', 'activer / désactiver le LAP', 'true'),
 ('optionGeActiverPhonecapture', 'default', 0, '', 'Activation services', 'true/false', 'si true, activation de phonecapture (nécessite DICOM)', 'true'),
 ('optionGeActiverRappelsRdvMail', 'default', 0, '', 'Activation services', 'true/false', 'activer / désactiver les rappels par mail', 'false'),
 ('optionGeActiverRappelsRdvSMS', 'default', 0, '', 'Activation services', 'true/false', 'activer / désactiver les rappels par SMS', 'false'),
@@ -1160,7 +1194,7 @@ INSERT IGNORE INTO `configuration` (`name`, `level`, `toID`, `module`, `cat`, `t
 ('templateOrdoHeadAndFoot', 'default', 0, '', 'Modèles de documents', 'fichier', 'template pour header et footer des ordonnances standards (non ALD)', 'base-page-headAndFoot.html.twig'),
 ('templatesCdaFolder', 'default', 0, '', 'Modèles de documents', 'dossier', 'répertoire des fichiers de template pour la génération de XML CDA', ''),
 ('templatesPdfFolder', 'default', 0, '', 'Modèles de documents', 'dossier', 'répertoire des fichiers de template pour la génération de PDF', ''),
-('theriaqueMode', 'default', 0, '', 'LAP', 'texte', 'code d\'utilisation de Thériaque : WS (webservice) ou PG (base postgre en local)', ''),
+('theriaqueMode', 'default', 0, '', 'LAP', 'texte', 'code d\'utilisation de Thériaque : WS (webservice) ou PG (base postgre en local)', 'BDPM'),
 ('theriaquePgDbName', 'default', 0, '', 'LAP', 'texte', 'nom de la base postgre', ''),
 ('theriaquePgDbPassword', 'default', 0, '', 'LAP', 'texte', 'mot de passe postgre', ''),
 ('theriaquePgDbUser', 'default', 0, '', 'LAP', 'texte', 'nom d\'utilisateur postgre', ''),
