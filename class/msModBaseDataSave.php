@@ -87,12 +87,15 @@ class msModBaseDataSave
 	public function telephoneNumberTreatBeforeSave($value)
 	{
 		$tel = preg_replace('([-_ \.])', '', $value);
-		if (strlen($tel) == 10) {
-			$tel = preg_replace('/(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/', '\1 \2 \3 \4 \5', $tel);
-			return $tel;
-		} else {
+		// if (strlen($tel) == 10) {
+		// 	$tel = preg_replace('/(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/', '\1 \2 \3 \4 \5', $tel);
+		// 	return $tel;
+		// } else if (strlen($tel) == 8) {
+		// 	$tel = preg_replace('/(\d{2})(\d{3})(\d{3})/', '\1 \2 \3', $tel);
+		// 	return $tel;
+		// } else {
 			return $value;
-		}
+		// }
 	}
 
 	public function tbs_mobilePhone($value)
