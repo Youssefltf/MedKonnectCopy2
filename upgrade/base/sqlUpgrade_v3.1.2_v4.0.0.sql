@@ -287,7 +287,7 @@ INSERT IGNORE INTO `configuration`(`name`, `cat`, `level`, `type`, `description`
 ('lapActiverAllergiesStrucSur', 'LAP', 'default', 'texte','champs sur lesquels activer les Allergies structurées', ''),
 ('lapAtcdStrucPersoPourAnalyse', 'LAP', 'default', 'texte','champs sur lesquels analyser les atcd structurés', ''),
 ('lapAllergiesStrucPersoPourAnalyse', 'LAP', 'default', 'texte','champs sur lesquels analyser les Allergies structurées', ''),
-('theriaqueMode', 'LAP', 'default', 'texte','Mode d\'utilisation de Thériaque : WS (webservice) ou PG (base postgre en local)', ''),
+('theriaqueMode', 'LAP', 'default', 'texte','Mode d\'utilisation de Thériaque : WS (webservice) ou PG (base postgre en local)', 'BDPM'),
 ('theriaqueWsURL', 'LAP', 'default', 'texte','url du webservice Thériaque', ''),
 ('theriaqueShowMedicHospi', 'LAP', 'default', 'true/false', 'voir les médicaments hospitaliers', 'true'),
 ('theriaqueShowMedicNonComer', 'LAP', 'default', 'true/false', 'voir les médicaments non commercialisés', 'false'),

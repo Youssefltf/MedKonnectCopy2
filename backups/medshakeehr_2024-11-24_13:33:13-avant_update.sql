@@ -577,7 +577,7 @@ INSERT INTO `configuration` VALUES
 (117,'lapAllergiesStrucPersoPourAnalyse','default',0,'','LAP','texte','champs sur lesquels analyser les Allergies structur√©es',''),
 (118,'lapAtcdStrucPersoPourAnalyse','default',0,'','LAP','texte','champs sur lesquels analyser les atcd structur√©s',''),
 (119,'lapPrintAllergyRisk','default',0,'','LAP','true/false','imprimer les risques allergiques d√©tect√©s','true'),
-(120,'lapSearchDefaultType','default',0,'','LAP','texte','mode de recherche par d√©faut des m√©dicaments','dci'),
+(120,'lapSearchDefaultType','default',0,'','LAP','texte','mode de recherche par d√©faut des m√©dicaments','spe'),
 (121,'lapSearchResultsSortBy','default',0,'','LAP','texte','ordre pr√©f√©rentiel d\'affichage des m√©dicaments','nom'),
 (122,'mailRappelActiver','default',0,'','Rappels mail','true/false','activer / d√©sactiver les rappels par mail',''),
 (123,'mailRappelDaysBeforeRDV','default',0,'','Rappels mail','nombre','nombre de jours avant le rendez-vous pour l\'exp√©dition du rappel','3'),
@@ -1336,7 +1336,7 @@ LOCK TABLES `people` WRITE;
 INSERT INTO `people` VALUES
 (1,'clicRDV','service','','base','',NULL,'2019-01-01 00:00:00',1,'','2019-01-01 00:00:00','',NULL,NULL),
 (2,'medshake','service','','base','',NULL,'2019-01-01 00:00:00',1,'','2019-01-01 00:00:00','',NULL,NULL),
-(5,'moussi','pro','admin','base','é˘?∆˘*TÃaƒ#b°=Jã<+â´7≤œ®ó∑ª<ã…â◊∫ã/»Ü.vùénÜ9ß…ŸıK´i¨&ﬁ˛€f',NULL,'2024-11-24 13:23:14',1,'127.0.0.1','2024-11-24 13:33:04','fb5502b70deba2bdfcc946ebae18a9f76d5dc5db',NULL,NULL);
+(5,'moussi','pro','admin','base','ÔøΩÔøΩ?ÔøΩÔøΩ*TÔøΩaÔøΩ#bÔøΩ=JÔøΩ<+ÔøΩÔøΩ7ÔøΩœ®ÔøΩÔøΩÔøΩ<ÔøΩÔøΩÔøΩ◊∫ÔøΩ/»Ü.vÔøΩÔøΩnÔøΩ9ÔøΩÔøΩÔøΩÔøΩKÔøΩiÔøΩ&ÔøΩÔøΩÔøΩf',NULL,'2024-11-24 13:23:14',1,'127.0.0.1','2024-11-24 13:33:04','fb5502b70deba2bdfcc946ebae18a9f76d5dc5db',NULL,NULL);
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 UNLOCK TABLES;
 
