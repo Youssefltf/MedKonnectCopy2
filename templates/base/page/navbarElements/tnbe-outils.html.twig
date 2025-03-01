@@ -41,29 +41,21 @@
  </a>
 
  <div class="dropdown-menu">
-
-
-     <!-- Début Menu Outils caché -->
-
-       {#{% if config.optionGeActiverLapInterne == 'true' or config.VoirRouletteObstetricale == 'true' %}
-         <h6 class="dropdown-header">Outils</h6>
-       {% endif %}
-       {% if config.optionGeActiverLapInterne == 'true' %}
-         <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/outils/lap/">
-           <i class="fas fa-pills fa-fw text-muted mr-1"></i>
-           LAP et BDM
-         </a>
-       {% endif %}
-       {% if config.VoirRouletteObstetricale == 'true' %}
-         <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/outils/roulette-obstetricale/" target="rouletteObs">
-           <i class="fas fa-circle-notch fa-fw text-muted mr-1"></i>
-           Roulette obstétricale
-         </a>
-       {% endif %}#}
-
-     <!-- Fin Menu Outils caché -->
-
-
+   {% if config.optionGeActiverLapInterne == 'true' or config.VoirRouletteObstetricale == 'true' %}
+     <h6 class="dropdown-header">Outils</h6>
+   {% endif %}
+   {% if config.optionGeActiverLapInterne == 'true' %}
+     <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/outils/lap/">
+       <i class="fas fa-pills fa-fw text-muted mr-1"></i>
+       LAP et BDM
+     </a>
+   {% endif %}
+   {% if config.VoirRouletteObstetricale == 'true' %}
+     <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/outils/roulette-obstetricale/" target="rouletteObs">
+       <i class="fas fa-circle-notch fa-fw text-muted mr-1"></i>
+       Roulette obstétricale
+     </a>
+   {% endif %}
    {% if config.faxService == 'ecofaxOVH' %}
      <a class="dropdown-item" href="{{ config.protocol }}{{ config.host }}{{ config.urlHostSuffixe }}/outils/envoyer-fax/">
        <i class="fas fa-fax fa-fw text-muted mr-1"></i>
