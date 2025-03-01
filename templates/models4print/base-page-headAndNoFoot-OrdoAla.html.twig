@@ -1,12 +1,13 @@
 {% set tag = page.courrier %}
 
-<html>
+<html lang="ar" dir="rtl">
     <head>
-        <meta charset="UTF-8"> <!-- Set character encoding to UTF-8 -->
-        <style>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <style type="text/css">
             @page {
                 margin: 170pt 50pt 40pt;
-                font-family: Arial, sans-serif; /* Use a font that supports Arabic characters */
+                font-family: "DejaVu Sans", "sans-serif";
+                src: url("vendor/dompdf/dompdf/lib/fonts/DIN-Next-LT-Arabic-Light.ttf") format("truetype");
             }
             #header {
                 position: fixed;
@@ -15,7 +16,24 @@
                 right: 0;
                 height: 90pt;
                 margin-bottom: 0;
-                border-bottom: medium double #777;
+            }
+
+            #header-left, #header-right {
+                width: 35%;
+                text-align: center;
+                padding: 0;
+                margin: -20;
+                border-bottom: medium double #777; /* Apply border-bottom to individual sections */
+            }
+
+            #header-left {
+                position: absolute;
+                left: 0;
+            }
+
+            #header-right {
+                position: absolute;
+                right: 0;
             }
 
             #footer p {
@@ -46,33 +64,34 @@
                 font-size: 12pt;
             }
         </style>
-        <body>
-            <div id="header" style="position: fixed; left: 0; top: -90pt; right: 0; height: 90pt; margin-bottom: 0; border-bottom: medium double #777;">
-                <div style="position: absolute; left: 0; width: 35%; text-align: center; padding: 0; margin: 0;">
-                    Docteur<br>
-                    <span class="gras" style="font-size: 16pt;">{{ tag.AuteurInitial_identiteUsuelle }}</span><br>
-                    {{ tag.AuteurInitial_titre }}<br><br>
-                    <div class="t8" style="position: relative; top: -20pt; width: 100%; vertical-align: bottom; text-align: center; padding: 0; margin: 0;">
-                        <br>
-                        {{ tag.AuteurInitial_adresseProLigne1 }} - {{ tag.AuteurInitial_adresseProLigne2 }}
-                        <br>
-                        <br>
-                        Tél: 73 486 571
-                    </div>
-                </div>
-                <div style="position: absolute; right: 0; width: 35%; text-align: center; padding: 0; margin: 0;" dir="rtl"> <!-- Set text direction to RTL -->
-                    الدكتور<br>
-                    <span class="gras" style="font-size: 16pt;">علاء الدين الميلي</span><br>
-                    طبيب أسنان<br><br>
-                    <div class="t8" style="position: relative; top: -20pt; width: 100%; vertical-align: bottom; text-align: center; padding: 0; margin: 0;">
-                        <br>
-                        1 نهج حسن البرجي 5020 جمال
-                        <br>
-                        <br>
-                        73 486 571 :الهاتف
-                    </div>
+    </head>
+    <body>
+        <div id="header">
+            <div id="header-left">
+                Docteur<br>
+                <span class="gras" style="font-size: 16pt;">{{ tag.AuteurInitial_identiteUsuelle }}</span><br>
+                {{ tag.AuteurInitial_titre }}<br><br>
+                <div class="t8" style="position: relative; top: -20pt; width: 100%; vertical-align: bottom; text-align: center; padding: 0; margin: 0;">
+                    <br>
+                    {{ tag.AuteurInitial_adresseProLigne1 }} - {{ tag.AuteurInitial_adresseProLigne2 }}
+                    <br>
+                    <br>
+                    Tél: 73 486 571
                 </div>
             </div>
-
-            <!-- stop head -->
-            <div class="t9">
+            <div id="header-right" dir="rtl" lang="ar">
+                الدكتور<br>
+                <span class="gras" style="font-size: 16pt;">علاء الدين الميلي</span><br>
+                طبيب أسنان<br><br>
+                <div class="t8" style="position: relative; top: -20pt; width: 100%; vertical-align: bottom; text-align: center; padding: 0; margin: 0;">
+                    <br>
+١، نهج حسن البرجي 5020 جمال        
+                    <br>
+                    <br>
+                    73 486 571 :الهاتف
+                </div>
+            </div>
+        </div>
+        
+        <!-- stop head -->
+        <div class="t9">

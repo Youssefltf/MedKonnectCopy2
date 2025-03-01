@@ -21,8 +21,11 @@
  */
 
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfReader;
+require $homepath . 'vendor/autoload.php';
+require_once $homepath . 'vendor/src/Arabic.php';
 
 /**
  * Générer du PDF
@@ -270,9 +273,22 @@ class msPDF
 	public function showPDF()
 	{
 		global $p;
-		$dompdf = new Dompdf();
-		$dompdf->getOptions()->setChroot($p['homepath']);
-		$dompdf->loadHtml($this->_contenuFinalPDF);
+		// Configure Dompdf options
+		$options = new Options();
+		$options->set('defaultFont', 'Arabic');
+		$options->setChroot($p['homepath']);
+		$dompdf = new Dompdf($options);
+
+		$html = $this->_contenuFinalPDF;
+		$Arabic = new ArPHP\I18N\Arabic();
+		$temp = $Arabic->arIdentify($html);
+		for ($i = count($temp)-1; $i >= 0; $i-=2) {
+		$utf8ar = $Arabic->utf8Glyphs(substr($html, $temp[$i-1], $temp[$i] - $temp[$i-1]));
+		$html   = substr_replace($html, $utf8ar, $temp[$i-1], $temp[$i] - $temp[$i-1]);
+		}
+		
+		$dompdf->loadHtml($html);
+
 		$dompdf->setPaper($this->_paperSize, $this->_paperOrientation);
 		$dompdf->render();
 		$dompdf->stream('document.pdf', array('Attachment' => 0));
@@ -288,11 +304,24 @@ class msPDF
 		if (!isset($this->_objetID)) {
 			throw new Exception('ObjetID is not defined');
 		}
+		// Configure Dompdf options
+		$options = new Options();
+		$options->set('defaultFont', 'Arabic');
+		$options->setChroot($p['homepath']);
 
 		// PDF issu de la construction HTML (dompdf)
-		$dompdf = new Dompdf();
-		$dompdf->getOptions()->setChroot($p['homepath']);
-		$dompdf->loadHtml($this->_contenuFinalPDF);
+		$dompdf = new Dompdf($options);
+
+		$html = $this->_contenuFinalPDF;
+		$Arabic = new ArPHP\I18N\Arabic();
+		$temp = $Arabic->arIdentify($html);
+		for ($i = count($temp)-1; $i >= 0; $i-=2) {
+		$utf8ar = $Arabic->utf8Glyphs(substr($html, $temp[$i-1], $temp[$i] - $temp[$i-1]));
+		$html   = substr_replace($html, $utf8ar, $temp[$i-1], $temp[$i] - $temp[$i-1]);
+		}
+		
+		$dompdf->loadHtml($html);
+	
 		$dompdf->setPaper($this->_paperSize, $this->_paperOrientation);
 		$dompdf->render();
 		$pdf = $dompdf->output();
